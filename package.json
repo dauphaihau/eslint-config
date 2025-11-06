@@ -7,7 +7,10 @@
   "files": ["dist"],
   "scripts": {
     "build": "pnpm exec tsup src/index.ts --dts --format esm --external @eslint/js --external @stylistic/eslint-plugin --external typescript-eslint",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "release:patch": "pnpm build && pnpm version patch && pnpm publish",
+    "release:minor": "pnpm build && pnpm version minor && pnpm publish",
+    "release:major": "pnpm build && pnpm version major && pnpm publish"
   },
   "peerDependencies": {
     "eslint": "^9.0.0"
