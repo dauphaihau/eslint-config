@@ -1,10 +1,12 @@
 {
   "name": "@dauphaihau/eslint-config",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "pnpm exec tsup src/index.ts --dts --format esm --external @eslint/js --external @stylistic/eslint-plugin --external typescript-eslint",
     "lint": "eslint .",
@@ -16,8 +18,12 @@
     "eslint": "^9.0.0"
   },
   "peerDependenciesMeta": {
-    "typescript": { "optional": true },
-    "typescript-eslint": { "optional": true }
+    "typescript": {
+      "optional": true
+    },
+    "typescript-eslint": {
+      "optional": true
+    }
   },
   "devDependencies": {
     "typescript": "^5.4.0",
