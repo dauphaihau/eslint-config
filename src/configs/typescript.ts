@@ -7,17 +7,32 @@ export function typescriptConfig() {
     // ...ts.configs.stylistic,
     // ...ts.configs.strict,
 
-    // If you want type-aware rules later, you can push:
+    // type-aware rules later
     // ...tseslint.configs.recommendedTypeChecked,
-    // and add `languageOptions: { parserOptions: { projectService: true } }` with a tsconfig, etc.
 
-    // Narrow the files to TS/TSX only for TS-specific rules if you add custom ones later:
+    // narrow the files to TS/TSX only for TS-specific rules if you add custom ones later
     {
       files: ['**/*.ts', '**/*.tsx'],
       languageOptions: {
         parser: ts.parser,
       },
       rules: {
+        '@typescript-eslint/member-ordering': ['error', {
+          default: [
+            'public-static-field',
+            'protected-static-field',
+            'private-static-field',
+            'public-instance-field',
+            'protected-instance-field',
+            'private-instance-field',
+            'constructor',
+            'public-instance-method',
+            'protected-instance-method',
+            'private-instance-method'
+          ],
+        }],
+
+        // No import type side effects
         '@typescript-eslint/no-import-type-side-effects': 'error',
         '@typescript-eslint/no-unused-vars': ['error', {
           varsIgnorePattern: '^_',
