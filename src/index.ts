@@ -1,4 +1,4 @@
-import type { Linter } from 'eslint'
+import type { Config } from 'eslint/config'
 import { baseConfig } from './configs/base'
 import { typescriptConfig } from './configs/typescript'
 
@@ -19,5 +19,5 @@ export default function dauphaihau(options: Options = {}) {
     configs.push(...typescriptConfig())
   }
 
-  return configs as Linter.FlatConfig[]
+  return configs as Config[]
 }

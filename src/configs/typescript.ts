@@ -10,13 +10,47 @@ export function typescriptConfig() {
     // type-aware rules later
     // ...tseslint.configs.recommendedTypeChecked,
 
-    // narrow the files to TS/TSX only for TS-specific rules if you add custom ones later
+    // narrow the files to TS/TSX only for TS-specific rules
     {
       files: ['**/*.ts', '**/*.tsx'],
       languageOptions: {
         parser: ts.parser,
       },
       rules: {
+        // Naming conventions
+        '@typescript-eslint/naming-convention': [
+          'error',
+          {
+            selector: ['variable', 'function'],
+            format: ['camelCase'],
+            leadingUnderscore: 'allow', // allows _privateVar
+          },
+          {
+            selector: ['typeLike'], // class, interface, type, component
+            format: ['PascalCase'],
+          },
+          {
+            selector: 'variable', // constants (like env, config)
+            modifiers: ['const'],
+            format: ['UPPER_CASE'],
+            filter: {
+              regex: '^[A-Z0-9_]+$',
+              match: true,
+            },
+          },
+          {
+            selector: 'property',
+            format: ['camelCase'],
+            leadingUnderscore: 'allow',
+            // exception: allow external API data
+            // filter: {
+            //   regex: '^(_|[a-z0-9_]+)$',
+            //   match: false,
+            // },
+          },
+        ],
+
+        // Order of members in class
         '@typescript-eslint/member-ordering': ['error', {
           default: [
             'public-static-field',
@@ -41,6 +75,7 @@ export function typescriptConfig() {
         }],
         '@typescript-eslint/no-shadow': 'error',
         '@typescript-eslint/consistent-type-imports': 'error',
+        '@typescript-eslint/explicit-function-return-type': 'error',
       }
     },
   ]
