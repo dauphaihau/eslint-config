@@ -54,8 +54,8 @@ import dauphaihau from '@dauphaihau/eslint-config'
 export default dauphaihau({
   typescript: true,
 })
-```
 
+```
 ## License
 
 MIT

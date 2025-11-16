@@ -1,15 +1,15 @@
 import js from '@eslint/js'
 import stylistic from '@stylistic/eslint-plugin'
 import ts from 'typescript-eslint'
-import { defaultIgnores } from '../utils/ignores'
+import { defaultIgnores } from './ignores'
 import { Options } from '..'
+import { strategyManager } from '../strategies'
+import globals from 'globals'
 
 export function baseConfig(options: Options = {}) {
   const { typescript = false } = options
-
-  // Determine file patterns based on typescript option
-  const jsFiles = ["**/*.{js,mjs,cjs,jsx}"]
-  const allFiles = typescript ? ["**/*.{js,mjs,cjs,jsx,ts,tsx}"] : jsFiles
+  const jsFiles = strategyManager.getFilePatterns('javascript', options)
+  const allFiles = strategyManager.getAllFiles(options)
 
   return [
     // base JavaScript recommended rules
@@ -101,6 +101,17 @@ export function baseConfig(options: Options = {}) {
     {
       name: 'dauphaihau/ignores',
       ignores: defaultIgnores,
+    },
+    // This makes console, process, Buffer, and other Node.js globals available, resolving the no-undef error.
+
+    {
+      name: "dauphaihau/node-globals",
+      files: allFiles,
+      languageOptions: {
+        globals: {
+          ...globals.node,
+        },
+      },
     },
   ]
 }

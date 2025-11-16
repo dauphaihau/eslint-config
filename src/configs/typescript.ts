@@ -1,6 +1,14 @@
 import ts from 'typescript-eslint'
+import { Options } from '..'
+import { strategyManager } from '../strategies'
 
-export function typescriptConfig() {
+export function typescriptConfig(options: Options = {}) {
+  const tsFiles = strategyManager.getTypeScriptFiles(options)
+
+  if (tsFiles.length === 0) {
+    return []
+  }
+
   return [
     // Recommended TS rules (no type-checking) – fast preset
     ...ts.configs.recommended,
@@ -10,46 +18,13 @@ export function typescriptConfig() {
     // type-aware rules later
     // ...tseslint.configs.recommendedTypeChecked,
 
-    // narrow the files to TS/TSX only for TS-specific rules
+    // narrow the files to TS/TSX only for TS-specific rules (using strategy pattern)
     {
-      files: ['**/*.ts', '**/*.tsx'],
+      files: tsFiles,
       languageOptions: {
         parser: ts.parser,
       },
       rules: {
-        // Naming conventions
-        '@typescript-eslint/naming-convention': [
-          'error',
-          {
-            selector: ['variable', 'function'],
-            format: ['camelCase'],
-            leadingUnderscore: 'allow', // allows _privateVar
-          },
-          {
-            selector: ['typeLike'], // class, interface, type, component
-            format: ['PascalCase'],
-          },
-          {
-            selector: 'variable', // constants (like env, config)
-            modifiers: ['const'],
-            format: ['UPPER_CASE'],
-            filter: {
-              regex: '^[A-Z0-9_]+$',
-              match: true,
-            },
-          },
-          {
-            selector: 'property',
-            format: ['camelCase'],
-            leadingUnderscore: 'allow',
-            // exception: allow external API data
-            // filter: {
-            //   regex: '^(_|[a-z0-9_]+)$',
-            //   match: false,
-            // },
-          },
-        ],
-
         // Order of members in class
         '@typescript-eslint/member-ordering': ['error', {
           default: [

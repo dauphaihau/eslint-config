@@ -8,3 +8,4 @@ export const defaultIgnores = [
   '**/.vercel/**',
   '**/build/**',
 ]
+
