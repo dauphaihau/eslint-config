@@ -1,15 +1,15 @@
-import js from '@eslint/js'
-import stylistic from '@stylistic/eslint-plugin'
-import ts from 'typescript-eslint'
-import { defaultIgnores } from './ignores'
-import { Options } from '..'
-import { strategyManager } from '../strategies'
-import globals from 'globals'
+import js from '@eslint/js';
+import stylistic from '@stylistic/eslint-plugin';
+import ts from 'typescript-eslint';
+import { defaultIgnores } from './ignores';
+import type { Options } from '..';
+import { strategyManager } from '../strategies';
+import globals from 'globals';
 
 export function baseConfig(options: Options = {}) {
-  const { typescript = false } = options
-  const jsFiles = strategyManager.getFilePatterns('javascript', options)
-  const allFiles = strategyManager.getAllFiles(options)
+  const { typescript = false } = options;
+  const jsFiles = strategyManager.getFilePatterns('javascript', options);
+  const allFiles = strategyManager.getAllFiles(options);
 
   return [
     // base JavaScript recommended rules
@@ -20,14 +20,14 @@ export function baseConfig(options: Options = {}) {
 
     // stylistic (formatting) rules
     {
-      name: "dauphaihau/stylistic",
+      name: 'dauphaihau/stylistic',
       files: allFiles,
       ...(typescript && {
         languageOptions: {
           parser: ts.parser,
         },
       }),
-      plugins: { "@stylistic": stylistic },
+      plugins: { '@stylistic': stylistic },
       rules: {
         // Spacing
         '@stylistic/func-call-spacing': 'error',
@@ -102,10 +102,10 @@ export function baseConfig(options: Options = {}) {
       name: 'dauphaihau/ignores',
       ignores: defaultIgnores,
     },
-    // This makes console, process, Buffer, and other Node.js globals available, resolving the no-undef error.
 
+    // This makes console, process, Buffer, and other Node.js globals available, resolving the no-undef error.
     {
-      name: "dauphaihau/node-globals",
+      name: 'dauphaihau/node-globals',
       files: allFiles,
       languageOptions: {
         globals: {
@@ -113,5 +113,5 @@ export function baseConfig(options: Options = {}) {
         },
       },
     },
-  ]
+  ];
 }

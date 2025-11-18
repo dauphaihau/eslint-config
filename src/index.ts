@@ -1,10 +1,11 @@
-import { ESLintConfigBuilder } from './builder'
+import type { Config } from 'eslint/config';
+import { ESLintConfigBuilder } from './builder';
 
 export type Options = {
   typescript?: boolean
   react?: boolean
   vue?: boolean
-}
+};
 
 /**
  * Default factory function for creating ESLint configurations.
@@ -16,11 +17,11 @@ export type Options = {
  * export default dauphaihau({ typescript: true })
  * ```
  */
-export default function dauphaihau(options: Options = {}) {
+export default function dauphaihau(options: Options = {}): Config[] {
   return new ESLintConfigBuilder()
     .setOptions(options)
     .withAll()
-    .build()
+    .build();
 }
 
 /**
@@ -40,11 +41,11 @@ export default function dauphaihau(options: Options = {}) {
  * ```
  */
 export function createBuilder(): ESLintConfigBuilder {
-  return new ESLintConfigBuilder()
+  return new ESLintConfigBuilder();
 }
 
 // Export the builder class for advanced usage
-export { ESLintConfigBuilder } from './builder'
+export { ESLintConfigBuilder } from './builder';
 
 // Export strategies for extensibility
 export {
@@ -58,5 +59,5 @@ export {
   SourceFilesStrategy,
   ComponentFilesStrategy,
   StrategyManager,
-  strategyManager,
-} from './strategies'
+  strategyManager
+} from './strategies';

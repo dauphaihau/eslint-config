@@ -7,5 +7,4 @@ export const defaultIgnores = [
   '**/.output/**',
   '**/.vercel/**',
   '**/build/**',
-]
-
+];

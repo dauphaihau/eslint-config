@@ -1,26 +1,25 @@
-import { Options } from '..'
-import { strategyManager } from '../strategies'
+import type { Options } from '..';
+import { strategyManager } from '../strategies';
 
 export function namingConfig(options: Options = {}) {
-  const allFiles = strategyManager.getSourceFiles(options)
-  const tsxFiles = strategyManager.getComponentFiles(options)
+  const allFiles = strategyManager.getSourceFiles(options);
+  const tsxFiles = strategyManager.getComponentFiles(options);
 
   return [
     {
-      name: "dauphaihau/name",
+      name: 'dauphaihau/naming',
       files: allFiles,
+      ignores: ['**/configs/**'], // Exclude config files from naming convention
       rules: {
         // Naming conventions
         '@typescript-eslint/naming-convention': [
           'error',
+
+          // ---------- Variable, Function ----------
           {
             selector: ['variable', 'function'],
             format: ['camelCase'],
             leadingUnderscore: 'allow', // allows _privateVar
-          },
-          {
-            selector: ['typeLike'], // class, interface, type, component
-            format: ['PascalCase'],
           },
           {
             selector: 'variable', // constants (like env, config)
@@ -31,24 +30,83 @@ export function namingConfig(options: Options = {}) {
               match: true,
             },
           },
+
+
+          // ---------- Interfaces ----------
           {
-            selector: 'property',
+            selector: 'interface',
+            format: ['PascalCase'],
+            custom: { regex: '^I[A-Z]', match: false }, // forbid I prefix
+          },
+
+          // ---------- Type Aliases ----------
+          {
+            selector: 'typeAlias',
+            format: ['PascalCase'], // User, UserPayload
+          },
+
+          // ---------- Classes ----------
+          {
+            selector: 'class',
+            format: ['PascalCase'],
+          },
+
+          // ---------- Enums ----------
+          {
+            selector: 'enum',
+            format: ['PascalCase'],
+          },
+          {
+            selector: 'enumMember',
+            format: ['UPPER_CASE'], // STATUS.OK
+          },
+
+
+          // ---------- Parameters ----------
+          {
+            selector: 'parameter',
             format: ['camelCase'],
-            leadingUnderscore: 'allow',
-            // exception: allow external API data
-            // filter: {
-            //   regex: '^(_|[a-z0-9_]+)$',
-            //   match: false,
-            // },
+            leadingUnderscore: 'allow', // allow _unused
+          },
+
+
+          // ---------- Properties (object keys) ----------
+          {
+            selector: 'objectLiteralProperty',
+            format: null, // allow anything -> API response, snake_case keys allowed
+          },
+          {
+            // internal domain types
+            selector: 'typeProperty',
+            format: ['camelCase'],
+          },
+
+
+          // ---------- Private members ----------
+          {
+            selector: 'classProperty',
+            modifiers: ['private'],
+            format: ['camelCase'],
+            leadingUnderscore: 'allow', // _value
+          },
+
+          // ---------- Boolean naming ----------
+          {
+            selector: 'variable',
+            types: ['boolean'],
+            format: ['PascalCase', 'camelCase'],
+            prefix: ['is', 'has', 'should', 'can', 'did', 'will'],
+            filter: { regex: '^(is|has|should|can|did|will)[A-Z]', match: true },
           },
         ],
 
       },
     },
+
     // TSX/JSX specific: Allow PascalCase for functions (React components)
     // Helper functions will still be camelCase due to the general rule above
     {
-      name: "dauphaihau/name-tsx",
+      name: 'dauphaihau/naming-tsx',
       files: tsxFiles,
       rules: {
         '@typescript-eslint/naming-convention': [
@@ -69,6 +127,5 @@ export function namingConfig(options: Options = {}) {
         ],
       },
     },
-  ]
+  ];
 }
-

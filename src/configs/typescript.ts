@@ -1,12 +1,13 @@
-import ts from 'typescript-eslint'
-import { Options } from '..'
-import { strategyManager } from '../strategies'
+import type { Config } from 'eslint/config';
+import ts from 'typescript-eslint';
+import type { Options } from '..';
+import { strategyManager } from '../strategies';
 
-export function typescriptConfig(options: Options = {}) {
-  const tsFiles = strategyManager.getTypeScriptFiles(options)
+export function typescriptConfig(options: Options = {}): Config[] {
+  const tsFiles = strategyManager.getTypeScriptFiles(options);
 
   if (tsFiles.length === 0) {
-    return []
+    return [];
   }
 
   return [
@@ -37,7 +38,7 @@ export function typescriptConfig(options: Options = {}) {
             'constructor',
             'public-instance-method',
             'protected-instance-method',
-            'private-instance-method'
+            'private-instance-method',
           ],
         }],
 
@@ -51,7 +52,16 @@ export function typescriptConfig(options: Options = {}) {
         '@typescript-eslint/no-shadow': 'error',
         '@typescript-eslint/consistent-type-imports': 'error',
         '@typescript-eslint/explicit-function-return-type': 'error',
-      }
+      },
     },
-  ]
+
+    // Disable explicit return type requirement for config and script files
+    {
+      name: 'dauphaihau/typescript-explicit-return-types',
+      files: ['eslint.config.*', '**/configs/**/*.ts', '**/scripts/**/*.ts'],
+      rules: {
+        '@typescript-eslint/explicit-function-return-type': 'off',
+      },
+    },
+  ];
 }

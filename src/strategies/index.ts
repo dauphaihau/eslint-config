@@ -7,11 +7,10 @@ export {
   TestStrategy,
   AllFilesStrategy,
   SourceFilesStrategy,
-  ComponentFilesStrategy,
-} from './file-type-strategy'
+  ComponentFilesStrategy
+} from './file-type-strategy';
 
 export {
   StrategyManager,
-  strategyManager,
-} from './strategy-manager'
-
+  strategyManager
+} from './strategy-manager';

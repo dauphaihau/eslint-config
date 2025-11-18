@@ -1,4 +1,4 @@
-import type { Options } from '../index'
+import type { Options } from '../index';
 
 /**
  * Strategy interface for handling file type-specific configurations.
@@ -27,15 +27,15 @@ export interface FileTypeStrategy {
  */
 export class JavaScriptStrategy implements FileTypeStrategy {
   getName(): string {
-    return 'javascript'
+    return 'javascript';
   }
 
-  getFilePatterns(options: Options): string[] {
-    return ['**/*.{js,mjs,cjs,jsx}']
+  getFilePatterns(_options: Options): string[] {
+    return ['**/*.{js,mjs,cjs,jsx}'];
   }
 
-  shouldApply(options: Options): boolean {
-    return true // Always applies
+  shouldApply(_options: Options): boolean {
+    return true; // Always applies
   }
 }
 
@@ -44,17 +44,17 @@ export class JavaScriptStrategy implements FileTypeStrategy {
  */
 export class TypeScriptStrategy implements FileTypeStrategy {
   getName(): string {
-    return 'typescript'
+    return 'typescript';
   }
 
   getFilePatterns(options: Options): string[] {
-    return options.typescript
-      ? ['**/*.{ts,tsx}']
-      : []
+    return options.typescript ?
+      ['**/*.{ts,tsx}'] :
+      [];
   }
 
   shouldApply(options: Options): boolean {
-    return options.typescript === true
+    return options.typescript === true;
   }
 }
 
@@ -63,18 +63,18 @@ export class TypeScriptStrategy implements FileTypeStrategy {
  */
 export class ReactStrategy implements FileTypeStrategy {
   getName(): string {
-    return 'react'
+    return 'react';
   }
 
   getFilePatterns(options: Options): string[] {
     if (options.typescript) {
-      return ['**/*.tsx', '**/components/**/*.{ts,tsx}']
+      return ['**/*.tsx', '**/components/**/*.{ts,tsx}'];
     }
-    return ['**/*.jsx', '**/components/**/*.{js,jsx}']
+    return ['**/*.jsx', '**/components/**/*.{js,jsx}'];
   }
 
   shouldApply(options: Options): boolean {
-    return options.react === true || options.typescript === true
+    return options.react === true || options.typescript === true;
   }
 }
 
@@ -83,15 +83,15 @@ export class ReactStrategy implements FileTypeStrategy {
  */
 export class VueStrategy implements FileTypeStrategy {
   getName(): string {
-    return 'vue'
+    return 'vue';
   }
 
-  getFilePatterns(options: Options): string[] {
-    return ['**/*.vue']
+  getFilePatterns(_options: Options): string[] {
+    return ['**/*.vue'];
   }
 
   shouldApply(options: Options): boolean {
-    return options.vue === true
+    return options.vue === true;
   }
 }
 
@@ -100,18 +100,18 @@ export class VueStrategy implements FileTypeStrategy {
  */
 export class TestStrategy implements FileTypeStrategy {
   getName(): string {
-    return 'test'
+    return 'test';
   }
 
   getFilePatterns(options: Options): string[] {
     if (options.typescript) {
-      return ['**/*.test.{ts,js}', '**/__tests__/**/*.{ts,js}']
+      return ['**/*.test.{ts,js}', '**/__tests__/**/*.{ts,js}'];
     }
-    return ['**/*.test.{js}', '**/__tests__/**/*.{js}']
+    return ['**/*.test.{js}', '**/__tests__/**/*.{js}'];
   }
 
-  shouldApply(options: Options): boolean {
-    return true // Always applies
+  shouldApply(_options: Options): boolean {
+    return true; // Always applies
   }
 }
 
@@ -120,17 +120,17 @@ export class TestStrategy implements FileTypeStrategy {
  */
 export class AllFilesStrategy implements FileTypeStrategy {
   getName(): string {
-    return 'all-files'
+    return 'all-files';
   }
 
   getFilePatterns(options: Options): string[] {
-    return options.typescript
-      ? ['**/*.{js,mjs,cjs,jsx,ts,tsx}']
-      : ['**/*.{js,mjs,cjs,jsx}']
+    return options.typescript ?
+      ['**/*.{js,mjs,cjs,jsx,ts,tsx}'] :
+      ['**/*.{js,mjs,cjs,jsx}'];
   }
 
-  shouldApply(options: Options): boolean {
-    return true // Always applies
+  shouldApply(_options: Options): boolean {
+    return true; // Always applies
   }
 }
 
@@ -139,17 +139,17 @@ export class AllFilesStrategy implements FileTypeStrategy {
  */
 export class SourceFilesStrategy implements FileTypeStrategy {
   getName(): string {
-    return 'source-files'
+    return 'source-files';
   }
 
   getFilePatterns(options: Options): string[] {
-    return options.typescript
-      ? ['**/*.{js,mjs,cjs,ts}']
-      : ['**/*.{js,mjs,cjs}']
+    return options.typescript ?
+      ['**/*.{js,mjs,cjs,ts}'] :
+      ['**/*.{js,mjs,cjs}'];
   }
 
-  shouldApply(options: Options): boolean {
-    return true // Always applies
+  shouldApply(_options: Options): boolean {
+    return true; // Always applies
   }
 }
 
@@ -158,17 +158,16 @@ export class SourceFilesStrategy implements FileTypeStrategy {
  */
 export class ComponentFilesStrategy implements FileTypeStrategy {
   getName(): string {
-    return 'component-files'
+    return 'component-files';
   }
 
   getFilePatterns(options: Options): string[] {
-    return options.typescript
-      ? ['**/*.tsx']
-      : ['**/*.jsx']
+    return options.typescript ?
+      ['**/*.tsx'] :
+      ['**/*.jsx'];
   }
 
-  shouldApply(options: Options): boolean {
-    return true // Always applies (even if empty, it's valid)
+  shouldApply(_options: Options): boolean {
+    return true; // Always applies (even if empty, it's valid)
   }
 }
-

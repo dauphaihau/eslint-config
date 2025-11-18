@@ -1,10 +1,10 @@
-import type { Config } from 'eslint/config'
-import { baseConfig } from './configs/base'
-import { maxLinesConfig } from './configs/max-lines'
-import { typescriptConfig } from './configs/typescript'
-import { namingConfig } from './configs/naming'
-import { fileNamesConfig } from './configs/file-names'
-import type { Options } from './index'
+import type { Config } from 'eslint/config';
+import { baseConfig } from './configs/base';
+import { maxLinesConfig } from './configs/max-lines';
+import { typescriptConfig } from './configs/typescript';
+import { namingConfig } from './configs/naming';
+import { fileNamesConfig } from './configs/file-names';
+import type { Options } from './index';
 
 /**
  * Builder class for constructing ESLint configurations with a fluent API.
@@ -22,21 +22,21 @@ import type { Options } from './index'
  * ```
  */
 export class ESLintConfigBuilder {
-  private configs: Config[] = []
-  private options: Options = {}
-  private baseAdded = false
-  private namingAdded = false
-  private maxLinesAdded = false
-  private fileNamesAdded = false
-  private typescriptAdded = false
+  private configs: Config[] = [];
+  private options: Options = {};
+  private baseAdded = false;
+  private namingAdded = false;
+  private maxLinesAdded = false;
+  private fileNamesAdded = false;
+  private typescriptAdded = false;
 
   /**
    * Set options that will be used for all subsequent config additions.
    * Can be called multiple times to merge options.
    */
   setOptions(options: Options): this {
-    this.options = { ...this.options, ...options }
-    return this
+    this.options = { ...this.options, ...options };
+    return this;
   }
 
   /**
@@ -44,10 +44,10 @@ export class ESLintConfigBuilder {
    * This is typically the first config to add.
    */
   withBase(options?: Options): this {
-    const mergedOptions = { ...this.options, ...options }
-    this.configs.push(...(baseConfig(mergedOptions) as unknown as Config[]))
-    this.baseAdded = true
-    return this
+    const mergedOptions = { ...this.options, ...options };
+    this.configs.push(...(baseConfig(mergedOptions) as unknown as Config[]));
+    this.baseAdded = true;
+    return this;
   }
 
   /**
@@ -55,10 +55,10 @@ export class ESLintConfigBuilder {
    * Requires base config to be added first if using default options.
    */
   withNaming(options?: Options): this {
-    const mergedOptions = { ...this.options, ...options }
-    this.configs.push(...(namingConfig(mergedOptions) as unknown as Config[]))
-    this.namingAdded = true
-    return this
+    const mergedOptions = { ...this.options, ...options };
+    this.configs.push(...(namingConfig(mergedOptions) as unknown as Config[]));
+    this.namingAdded = true;
+    return this;
   }
 
   /**
@@ -66,10 +66,10 @@ export class ESLintConfigBuilder {
    * Requires base config to be added first if using default options.
    */
   withMaxLines(options?: Options): this {
-    const mergedOptions = { ...this.options, ...options }
-    this.configs.push(...(maxLinesConfig(mergedOptions) as unknown as Config[]))
-    this.maxLinesAdded = true
-    return this
+    const mergedOptions = { ...this.options, ...options };
+    this.configs.push(...(maxLinesConfig(mergedOptions) as unknown as Config[]));
+    this.maxLinesAdded = true;
+    return this;
   }
 
   /**
@@ -77,10 +77,10 @@ export class ESLintConfigBuilder {
    * Requires base config to be added first if using default options.
    */
   withFileNames(options?: Options): this {
-    const mergedOptions = { ...this.options, ...options }
-    this.configs.push(...(fileNamesConfig(mergedOptions) as unknown as Config[]))
-    this.fileNamesAdded = true
-    return this
+    const mergedOptions = { ...this.options, ...options };
+    this.configs.push(...(fileNamesConfig(mergedOptions) as unknown as Config[]));
+    this.fileNamesAdded = true;
+    return this;
   }
 
   /**
@@ -88,16 +88,16 @@ export class ESLintConfigBuilder {
    * Requires typescript option to be set to true.
    */
   withTypeScript(options?: Options): this {
-    const mergedOptions = { ...this.options, ...options }
+    const mergedOptions = { ...this.options, ...options };
     if (!mergedOptions.typescript) {
       console.warn(
         'ESLintConfigBuilder: TypeScript config added but typescript option is not set. ' +
         'Consider calling setOptions({ typescript: true }) first.'
-      )
+      );
     }
-    this.configs.push(...(typescriptConfig(mergedOptions) as unknown as Config[]))
-    this.typescriptAdded = true
-    return this
+    this.configs.push(...(typescriptConfig(mergedOptions) as unknown as Config[]));
+    this.typescriptAdded = true;
+    return this;
   }
 
   /**
@@ -106,11 +106,12 @@ export class ESLintConfigBuilder {
    */
   withCustom(config: Config | Config[]): this {
     if (Array.isArray(config)) {
-      this.configs.push(...config)
-    } else {
-      this.configs.push(config)
+      this.configs.push(...config);
     }
-    return this
+    else {
+      this.configs.push(config);
+    }
+    return this;
   }
 
   /**
@@ -118,25 +119,25 @@ export class ESLintConfigBuilder {
    * Optionally includes TypeScript config if typescript option is set.
    */
   withAll(options?: Options): this {
-    const mergedOptions = { ...this.options, ...options }
+    const mergedOptions = { ...this.options, ...options };
 
-    this.withBase(mergedOptions)
-    this.withNaming(mergedOptions)
-    this.withMaxLines(mergedOptions)
-    this.withFileNames(mergedOptions)
+    this.withBase(mergedOptions);
+    this.withNaming(mergedOptions);
+    this.withMaxLines(mergedOptions);
+    this.withFileNames(mergedOptions);
 
     if (mergedOptions.typescript) {
-      this.withTypeScript(mergedOptions)
+      this.withTypeScript(mergedOptions);
     }
 
-    return this
+    return this;
   }
 
   /**
    * Build and return the final ESLint configuration array.
    */
   build(): Config[] {
-    return [...this.configs]
+    return [...this.configs];
   }
 
   /**
@@ -144,44 +145,43 @@ export class ESLintConfigBuilder {
    * Useful for creating multiple configs with the same builder instance.
    */
   reset(): this {
-    this.configs = []
-    this.options = {}
-    this.baseAdded = false
-    this.namingAdded = false
-    this.maxLinesAdded = false
-    this.fileNamesAdded = false
-    this.typescriptAdded = false
-    return this
+    this.configs = [];
+    this.options = {};
+    this.baseAdded = false;
+    this.namingAdded = false;
+    this.maxLinesAdded = false;
+    this.fileNamesAdded = false;
+    this.typescriptAdded = false;
+    return this;
   }
 
   /**
    * Get the current options.
    */
   getOptions(): Options {
-    return { ...this.options }
+    return { ...this.options };
   }
 
   /**
    * Check if a specific config has been added.
    */
   hasBase(): boolean {
-    return this.baseAdded
+    return this.baseAdded;
   }
 
   hasNaming(): boolean {
-    return this.namingAdded
+    return this.namingAdded;
   }
 
   hasMaxLines(): boolean {
-    return this.maxLinesAdded
+    return this.maxLinesAdded;
   }
 
   hasFileNames(): boolean {
-    return this.fileNamesAdded
+    return this.fileNamesAdded;
   }
 
   hasTypeScript(): boolean {
-    return this.typescriptAdded
+    return this.typescriptAdded;
   }
 }
-
