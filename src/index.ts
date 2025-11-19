@@ -1,6 +1,7 @@
 import type { Config } from 'eslint/config';
 import { ESLintConfigBuilder } from './builder';
 
+
 export type Options = {
   typescript?: boolean
   react?: boolean
