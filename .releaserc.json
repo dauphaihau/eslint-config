@@ -27,7 +27,8 @@
       "@semantic-release/npm",
       {
         "npmPublish": true,
-        "pkgRoot": "."
+        "pkgRoot": ".",
+        "tag": false
       }
     ]
   ]
