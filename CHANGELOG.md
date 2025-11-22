@@ -1,3 +1,11 @@
+## [1.0.1](https://github.com/dauphaihau/eslint-config/compare/v1.0.0...v1.0.1) (2025-11-22)
+
+
+### Bug Fixes
+
+* trigger new release ([d28121b](https://github.com/dauphaihau/eslint-config/commit/d28121b4a8f6de2e8167a1c5316f33b8ba0d222d))
+* trigger new release ([2c59b52](https://github.com/dauphaihau/eslint-config/commit/2c59b525f8e7d159137db7ac67d87a3f0be1c5b2))
+
 # 1.0.0 (2025-11-22)
 
 
