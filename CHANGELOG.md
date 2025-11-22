@@ -1,3 +1,10 @@
+## [1.0.3](https://github.com/dauphaihau/eslint-config/compare/v1.0.2...v1.0.3) (2025-11-22)
+
+
+### Bug Fixes
+
+* something small ([0a8b7e0](https://github.com/dauphaihau/eslint-config/commit/0a8b7e014e5a7fe1c026279ba837957eee3f6d02))
+
 ## [1.0.2](https://github.com/dauphaihau/eslint-config/compare/v1.0.1...v1.0.2) (2025-11-22)
 
 
