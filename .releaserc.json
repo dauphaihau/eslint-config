@@ -28,7 +28,8 @@
       {
         "npmPublish": true,
         "pkgRoot": ".",
-        "tag": false
+        "tag": false,
+        "oidc": true
       }
     ]
   ]
