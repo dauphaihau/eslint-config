@@ -1,0 +1,13 @@
+{
+  "name": "playground",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "lint": "eslint .",
+    "fix": "eslint . --fix"
+  },
+  "devDependencies": {
+    "eslint": "^9.0.0",
+    "@dauphaihau/eslint-config": "workspace:*"
+  }
+}
