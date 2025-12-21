@@ -1,0 +1,17 @@
+file:///Volumes/Local/dev/pj-personal/dev-tools/eslint-config/playground/ts/debug-config.mjs:5
+console.log(JSON.stringify(config, null, 2));
+                 ^
+
+TypeError: Converting circular structure to JSON
+    --> starting at object with constructor 'Object'
+    |     property 'configs' -> object with constructor 'Object'
+    |     property 'recommended-flat' -> object with constructor 'Object'
+    |     property 'plugins' -> object with constructor 'Object'
+    --- property '@stylistic' closes the circle
+    at JSON.stringify (<anonymous>)
+    at file:///Volumes/Local/dev/pj-personal/dev-tools/eslint-config/playground/ts/debug-config.mjs:5:18
+    at ModuleJob.run (node:internal/modules/esm/module_job:263:25)
+    at async ModuleLoader.import (node:internal/modules/esm/loader:540:24)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+
+Node.js v20.19.1

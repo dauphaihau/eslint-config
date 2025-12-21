@@ -1,13 +1,11 @@
 import js from '@eslint/js';
 import stylistic from '@stylistic/eslint-plugin';
-import ts from 'typescript-eslint';
 import { defaultIgnores } from './ignores';
 import type { Options } from '..';
 import { strategyManager } from '../strategies';
 import globals from 'globals';
 
 export function baseConfig(options: Options = {}) {
-  const { typescript = false } = options;
   const jsFiles = strategyManager.getFilePatterns('javascript', options);
   const allFiles = strategyManager.getAllFiles(options);
 
@@ -22,11 +20,6 @@ export function baseConfig(options: Options = {}) {
     {
       name: 'dauphaihau/stylistic',
       files: allFiles,
-      ...(typescript && {
-        languageOptions: {
-          parser: ts.parser,
-        },
-      }),
       plugins: { '@stylistic': stylistic },
       rules: {
         // Spacing

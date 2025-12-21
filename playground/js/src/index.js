@@ -5,7 +5,7 @@ export const obj = {
   name: 'John',
 };
 
-export const greet = (name: string): void => {
+export const greet = (name) => {
   console.log('hello, ' + name);
   console.log('hello, ' + name);
 } ;

@@ -12,18 +12,19 @@ export function typescriptConfig(options: Options = {}): Config[] {
 
   return [
     // Recommended TS rules (no type-checking) – fast preset
-    ...ts.configs.recommended,
-    // ...ts.configs.stylistic,
-    // ...ts.configs.strict,
-
-    // type-aware rules later
-    // ...tseslint.configs.recommendedTypeChecked,
-
+    // Map recommended configs to only apply to TypeScript files
+    ...ts.configs.recommended.map((config) => ({
+      ...config,
+      files: tsFiles,
+    })),
     // narrow the files to TS/TSX only for TS-specific rules (using strategy pattern)
     {
       files: tsFiles,
       languageOptions: {
         parser: ts.parser,
+        parserOptions: {
+          projectService: true,
+        },
       },
       rules: {
         // Order of members in class

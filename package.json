@@ -5,7 +5,13 @@
   "scripts": {
     "build": "pnpm -r --filter @dauphaihau/eslint-config build",
     "dev": "pnpm -r --filter @dauphaihau/eslint-config dev",
-    "lint:playground": "pnpm --filter playground lint",
-    "fix:playground": "pnpm --filter playground fix"
+    "lint:playground": "pnpm --filter ts lint && pnpm --filter js lint",
+    "fix:playground": "pnpm --filter ts fix && pnpm --filter js fix",
+    "lint:ts": "pnpm --filter ts lint",
+    "lint:js": "pnpm --filter js lint",
+    "lint:react": "pnpm --filter react lint",
+    "fix:js": "pnpm --filter js fix",
+    "fix:ts": "pnpm --filter ts fix",
+    "fix:react": "pnpm --filter react fix"
   }
 }

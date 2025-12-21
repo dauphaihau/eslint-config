@@ -1,0 +1,15 @@
+{
+  "name": "react",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "lint": "eslint .",
+    "fix": "eslint . --fix"
+  },
+  "devDependencies": {
+    "eslint": "^9.0.0",
+    "@dauphaihau/eslint-config": "workspace:*",
+    "react": "^18.0.0",
+    "@types/react": "^18.0.0"
+  }
+}

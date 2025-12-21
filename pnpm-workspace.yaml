@@ -1,3 +1,5 @@
 packages:
   - "packages/*"
-  - "playground"
+  - "playground/ts"
+  - "playground/js"
+  - "playground/react"

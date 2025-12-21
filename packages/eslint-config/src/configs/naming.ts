@@ -1,15 +1,30 @@
 import type { Options } from '..';
 import { strategyManager } from '../strategies';
+import ts from 'typescript-eslint';
 
 export function namingConfig(options: Options = {}) {
-  const allFiles = strategyManager.getSourceFiles(options);
-  const tsxFiles = strategyManager.getComponentFiles(options);
+  const { typescript = false } = options;
+
+  // Naming convention rules require @typescript-eslint plugin
+  // Only apply when TypeScript is enabled
+  if (!typescript) {
+    return [];
+  }
+
+  const sourceFiles = strategyManager.getTypeScriptFiles(options);
+  const componentFiles = strategyManager.getComponentFiles(options);
 
   return [
     {
       name: 'dauphaihau/naming',
-      files: allFiles,
+      files: sourceFiles,
       ignores: ['**/configs/**'], // Exclude config files from naming convention
+      languageOptions: {
+        parser: ts.parser,
+      },
+      plugins: {
+        '@typescript-eslint': ts.plugin,
+      },
       rules: {
         // Naming conventions
         '@typescript-eslint/naming-convention': [
@@ -107,7 +122,13 @@ export function namingConfig(options: Options = {}) {
     // Helper functions will still be camelCase due to the general rule above
     {
       name: 'dauphaihau/naming-tsx',
-      files: tsxFiles,
+      files: componentFiles,
+      languageOptions: {
+        parser: ts.parser,
+      },
+      plugins: {
+        '@typescript-eslint': ts.plugin,
+      },
       rules: {
         '@typescript-eslint/naming-convention': [
           'error',

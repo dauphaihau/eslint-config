@@ -1,12 +1,17 @@
 import type { Config } from 'eslint/config';
 import { ESLintConfigBuilder } from './builder';
-
+import fs from 'node:fs';
 
 export type Options = {
   typescript?: boolean
   react?: boolean
   vue?: boolean
 };
+
+
+const hasTsConfig =
+  fs.existsSync('tsconfig.json') ||
+  fs.existsSync('tsconfig.base.json');
 
 /**
  * Default factory function for creating ESLint configurations.
@@ -19,46 +24,13 @@ export type Options = {
  * ```
  */
 export default function dauphaihau(options: Options = {}): Config[] {
+  const finalOptions = {
+    typescript: options.typescript ?? hasTsConfig,
+    ...options,
+  };
+
   return new ESLintConfigBuilder()
-    .setOptions(options)
+    .setOptions(finalOptions)
     .withAll()
     .build();
 }
-
-/**
- * Create a new ESLint config builder instance.
- * Provides a fluent API for building custom configurations.
- *
- * @example
- * ```ts
- * import { createBuilder } from '@dauphaihau/eslint-config'
- *
- * export default createBuilder()
- *   .setOptions({ typescript: true })
- *   .withBase()
- *   .withNaming()
- *   .withTypeScript()
- *   .build()
- * ```
- */
-export function createBuilder(): ESLintConfigBuilder {
-  return new ESLintConfigBuilder();
-}
-
-// Export the builder class for advanced usage
-export { ESLintConfigBuilder } from './builder';
-
-// Export strategies for extensibility
-export {
-  type FileTypeStrategy,
-  JavaScriptStrategy,
-  TypeScriptStrategy,
-  ReactStrategy,
-  VueStrategy,
-  TestStrategy,
-  AllFilesStrategy,
-  SourceFilesStrategy,
-  ComponentFilesStrategy,
-  StrategyManager,
-  strategyManager
-} from './strategies';

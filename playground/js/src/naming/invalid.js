@@ -1,7 +1,7 @@
-// // Invalid naming examples - these should fail naming rules
+// Invalid naming examples - these should fail naming rules
 
-// // Invalid: snake_case variable (should be camelCase)
-// const my_variable = 42; // Error: should be myVariable
+// Invalid: snake_case variable (should be camelCase)
+const my_variable = 42; // Error: should be myVariable
 
 // // Invalid: PascalCase variable (should be camelCase)
 // const MyVariable = 42; // Error: should be myVariable
@@ -32,16 +32,6 @@
 //   property = 'test';
 // }
 
-// // Invalid: camelCase interface (should be PascalCase)
-// interface myInterface { // Error: should be MyInterface
-//   property: string
-// }
-
-// // Invalid: camelCase type (should be PascalCase)
-// type myType = { // Error: should be MyType
-//   value: string
-// };
-
 // // Invalid: snake_case property (should be camelCase)
 // const obj = {
 //   snake_case_property: 'value', // Error: should be snakeCaseProperty
@@ -50,6 +40,6 @@
 
 // // Invalid: snake_case class property
 // class TestClass {
-//   public snake_case_prop = 'test'; // Error: should be snakeCaseProp
-//   private PascalCaseProp = 'value'; // Error: should be pascalCaseProp
+//   snake_case_prop = 'test'; // Error: should be snakeCaseProp
+//   PascalCaseProp = 'value'; // Error: should be pascalCaseProp
 // }
