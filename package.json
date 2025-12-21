@@ -12,6 +12,9 @@
     "lint:react": "pnpm --filter react lint",
     "fix:js": "pnpm --filter js fix",
     "fix:ts": "pnpm --filter ts fix",
-    "fix:react": "pnpm --filter react fix"
+    "fix:react": "pnpm --filter react fix",
+    "release:patch": "pnpm --filter @dauphaihau/eslint-config release:patch",
+    "release:minor": "pnpm --filter @dauphaihau/eslint-config release:minor",
+    "release:major": "pnpm --filter @dauphaihau/eslint-config release:major"
   }
 }
