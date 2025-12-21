@@ -25,14 +25,17 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+          cache: 'pnpm'
 
       - name: Install dependencies
         run: pnpm install
 
       - name: Build
+        working-directory: packages/eslint-config
         run: pnpm build
 
       - name: Check build output
+        working-directory: packages/eslint-config
         run: |
           if [ ! -d "dist" ] || [ -z "$(ls -A dist)" ]; then
             echo "Build output is empty or missing"
@@ -40,7 +43,10 @@ jobs:
           fi
 
       - name: Lint
+        working-directory: packages/eslint-config
         run: pnpm lint
 
       - name: Typecheck
+        working-directory: packages/eslint-config
         run: pnpm typecheck
+
