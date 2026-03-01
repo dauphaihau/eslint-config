@@ -18,9 +18,9 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "typecheck": "tsc --noEmit",
-    "release:patch": "pnpm build && pnpm version patch && pnpm publish",
-    "release:minor": "pnpm build && pnpm version minor && pnpm publish",
-    "release:major": "pnpm build && pnpm version major && pnpm publish"
+    "release:patch": "pnpm build && pnpm version patch && pnpm publish --no-git-checks",
+    "release:minor": "pnpm build && pnpm version minor && pnpm publish --no-git-checks",
+    "release:major": "pnpm build && pnpm version major && pnpm publish --no-git-checks"
   },
   "dependencies": {
     "@eslint/js": "^9.0.0",
