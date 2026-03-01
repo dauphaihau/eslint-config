@@ -1,6 +1,6 @@
 {
   "name": "@dauphaihau/eslint-config",
-  "version": "0.1.3",
+  "version": "0.1.5",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -12,7 +12,7 @@
     "README.md"
   ],
   "scripts": {
-    "build": "pnpm exec tsup src/index.ts --dts --format esm --external @eslint/js --external @stylistic/eslint-plugin --external typescript-eslint --external eslint-plugin-filenames-simple --external eslint-plugin-react --external eslint-plugin-react-hooks --external eslint-plugin-react-refresh",
+    "build": "pnpm exec tsup src/index.ts --dts --format esm --external @eslint/js --external @stylistic/eslint-plugin --external typescript-eslint --external eslint-plugin-check-file --external eslint-plugin-react --external eslint-plugin-react-hooks --external eslint-plugin-react-refresh",
     "prepack": "cp ../../README.md ./README.md",
     "prepublishOnly": "pnpm build",
     "lint": "eslint .",
@@ -25,7 +25,7 @@
   "dependencies": {
     "@eslint/js": "^9.0.0",
     "@stylistic/eslint-plugin": "^1.6.0",
-    "eslint-plugin-filenames-simple": "^0.9.0",
+    "eslint-plugin-check-file": "^3.3.1",
     "globals": "^16.5.0",
     "typescript-eslint": "^8.0.0"
   },

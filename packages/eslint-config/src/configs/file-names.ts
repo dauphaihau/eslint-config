@@ -1,5 +1,5 @@
 import type { Options } from '..';
-import filenamesSimple from 'eslint-plugin-filenames-simple';
+import checkFile from 'eslint-plugin-check-file';
 import { strategyManager } from '../strategies';
 
 export function fileNamesConfig(options: Options = {}) {
@@ -11,15 +11,15 @@ export function fileNamesConfig(options: Options = {}) {
       name: 'dauphaihau/file-names',
       files: allFiles,
       plugins: {
-        'filenames-simple': filenamesSimple,
+        'check-file': checkFile,
       },
       rules: {
         // Enforce kebab-case for regular files
-        'filenames-simple/naming-convention': [
+        'check-file/filename-naming-convention': [
           'error',
-          { rule: 'kebab-case' },
+          { '**/*': 'KEBAB_CASE' },
+          { ignoreMiddleExtensions: true },
         ],
-        'filenames-simple/extension': 'error',
       },
     },
     // TSX/JSX files: Allow PascalCase for React components (e.g., MyComponent.tsx)
@@ -27,14 +27,14 @@ export function fileNamesConfig(options: Options = {}) {
       name: 'dauphaihau/file-names-tsx',
       files: tsxFiles,
       plugins: {
-        'filenames-simple': filenamesSimple,
+        'check-file': checkFile,
       },
       rules: {
-        'filenames-simple/naming-convention': [
+        'check-file/filename-naming-convention': [
           'error',
-          { rule: 'PascalCase' },
+          { '**/*': 'PASCAL_CASE' },
+          { ignoreMiddleExtensions: true },
         ],
-        'filenames-simple/extension': 'error',
       },
     },
   ];
