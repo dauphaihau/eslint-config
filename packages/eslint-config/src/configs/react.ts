@@ -1,5 +1,17 @@
 import type { Config } from 'eslint/config';
 import type { Options } from '..';
+import fs from 'node:fs';
+
+function getReactVersion(): string {
+  try {
+    const pkg = JSON.parse(fs.readFileSync('package.json', 'utf-8'));
+    const dep = pkg.dependencies?.react || pkg.devDependencies?.react || pkg.peerDependencies?.react;
+    const match = dep?.match(/\d+/);
+    if (match) return `${match[0]}.0`;
+  }
+  catch { /* ignore */ }
+  return '18.0';
+}
 import { strategyManager } from '../strategies';
 
 export async function reactConfig(options: Options = {}): Promise<Config[]> {
@@ -47,7 +59,7 @@ export async function reactConfig(options: Options = {}): Promise<Config[]> {
       },
       settings: {
         react: {
-          version: 'detect', // Automatically detect React version
+          version: getReactVersion(),
         },
       },
       rules: {

@@ -7,7 +7,7 @@
     "fix": "eslint . --fix"
   },
   "devDependencies": {
-    "eslint": "^9.0.0",
+    "eslint": "^10.0.0",
     "@dauphaihau/eslint-config": "workspace:*",
     "react": "^18.0.0",
     "@types/react": "^18.0.0"

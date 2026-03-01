@@ -23,7 +23,7 @@ export function baseConfig(options: Options = {}) {
       plugins: { '@stylistic': stylistic },
       rules: {
         // Spacing
-        '@stylistic/func-call-spacing': 'error',
+        '@stylistic/function-call-spacing': 'error',
         '@stylistic/space-before-function-paren': ['error', {
           anonymous: 'always',
           named: 'never',
