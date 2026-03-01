@@ -2,6 +2,7 @@ import type { Config } from 'eslint/config';
 import { baseConfig } from './configs/base';
 import { maxLinesConfig } from './configs/max-lines';
 import { typescriptConfig } from './configs/typescript';
+import { reactConfig } from './configs/react';
 import { namingConfig } from './configs/naming';
 import { fileNamesConfig } from './configs/file-names';
 import type { Options } from './index';
@@ -23,12 +24,14 @@ import type { Options } from './index';
  */
 export class ESLintConfigBuilder {
   private configs: Config[] = [];
+  private pendingConfigs: Promise<Config[]>[] = [];
   private options: Options = {};
   private baseAdded = false;
   private namingAdded = false;
   private maxLinesAdded = false;
   private fileNamesAdded = false;
   private typescriptAdded = false;
+  private reactAdded = false;
 
   /**
    * Set options that will be used for all subsequent config additions.
@@ -101,6 +104,23 @@ export class ESLintConfigBuilder {
   }
 
   /**
+   * Add React-specific rules and plugins.
+   * Requires react option to be set to true.
+   */
+  withReact(options?: Options): this {
+    const mergedOptions = { ...this.options, ...options };
+    if (!mergedOptions.react) {
+      console.warn(
+        'ESLintConfigBuilder: React config added but react option is not set. ' +
+        'Consider calling setOptions({ react: true }) first.'
+      );
+    }
+    this.pendingConfigs.push(reactConfig(mergedOptions));
+    this.reactAdded = true;
+    return this;
+  }
+
+  /**
    * Add a custom config object directly.
    * Useful for adding project-specific rules or third-party configs.
    */
@@ -117,6 +137,7 @@ export class ESLintConfigBuilder {
   /**
    * Add all standard configs (base, naming, maxLines, fileNames).
    * Optionally includes TypeScript config if typescript option is set.
+   * Optionally includes React config if react option is set.
    */
   withAll(options?: Options): this {
     const mergedOptions = { ...this.options, ...options };
@@ -130,14 +151,19 @@ export class ESLintConfigBuilder {
       this.withTypeScript(mergedOptions);
     }
 
+    if (mergedOptions.react) {
+      this.withReact(mergedOptions);
+    }
+
     return this;
   }
 
   /**
    * Build and return the final ESLint configuration array.
    */
-  build(): Config[] {
-    return [...this.configs];
+  async build(): Promise<Config[]> {
+    const resolved = await Promise.all(this.pendingConfigs);
+    return [...this.configs, ...resolved.flat()];
   }
 
   /**
@@ -146,12 +172,14 @@ export class ESLintConfigBuilder {
    */
   reset(): this {
     this.configs = [];
+    this.pendingConfigs = [];
     this.options = {};
     this.baseAdded = false;
     this.namingAdded = false;
     this.maxLinesAdded = false;
     this.fileNamesAdded = false;
     this.typescriptAdded = false;
+    this.reactAdded = false;
     return this;
   }
 
@@ -183,5 +211,9 @@ export class ESLintConfigBuilder {
 
   hasTypeScript(): boolean {
     return this.typescriptAdded;
+  }
+
+  hasReact(): boolean {
+    return this.reactAdded;
   }
 }
