@@ -74,7 +74,7 @@ export class ReactStrategy implements FileTypeStrategy {
   }
 
   shouldApply(options: Options): boolean {
-    return options.react === true || options.typescript === true;
+    return options.react === true;
   }
 }
 
