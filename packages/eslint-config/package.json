@@ -8,10 +8,12 @@
     "access": "public"
   },
   "files": [
-    "dist"
+    "dist",
+    "README.md"
   ],
   "scripts": {
-    "build": "pnpm exec tsup src/index.ts --dts --format esm --external @eslint/js --external @stylistic/eslint-plugin --external typescript-eslint --external eslint-plugin-filenames-simple",
+    "build": "pnpm exec tsup src/index.ts --dts --format esm --external @eslint/js --external @stylistic/eslint-plugin --external typescript-eslint --external eslint-plugin-filenames-simple --external eslint-plugin-react --external eslint-plugin-react-hooks --external eslint-plugin-react-refresh",
+    "prepack": "cp ../../README.md ./README.md",
     "prepublishOnly": "pnpm build",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
@@ -29,6 +31,15 @@
     },
     "typescript-eslint": {
       "optional": true
+    },
+    "eslint-plugin-react": {
+      "optional": true
+    },
+    "eslint-plugin-react-hooks": {
+      "optional": true
+    },
+    "eslint-plugin-react-refresh": {
+      "optional": true
     }
   },
   "devDependencies": {
@@ -37,6 +48,9 @@
     "@types/node": "^22.0.0",
     "eslint": "^9.0.0",
     "eslint-plugin-filenames-simple": "^0.9.0",
+    "eslint-plugin-react": "^7.33.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.5",
     "globals": "^16.5.0",
     "jiti": "^2.0.0",
     "tsup": "^8.0.0",
