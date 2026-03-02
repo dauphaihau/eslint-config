@@ -1,4 +1,4 @@
-import dauphaihau from '@dauphaihau/eslint-config';
+import eslintConfig from '@dauphaihau/eslint-config';
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
 
