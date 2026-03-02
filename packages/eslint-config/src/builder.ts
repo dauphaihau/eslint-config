@@ -3,6 +3,7 @@ import { baseConfig } from './configs/base';
 import { maxLinesConfig } from './configs/max-lines';
 import { typescriptConfig } from './configs/typescript';
 import { reactConfig } from './configs/react';
+import { tailwindConfig } from './configs/tailwind';
 import { namingConfig } from './configs/naming';
 import { fileNamesConfig } from './configs/file-names';
 import type { Options } from './index';
@@ -32,6 +33,7 @@ export class ESLintConfigBuilder {
   private fileNamesAdded = false;
   private typescriptAdded = false;
   private reactAdded = false;
+  private tailwindAdded = false;
 
   /**
    * Set options that will be used for all subsequent config additions.
@@ -121,6 +123,23 @@ export class ESLintConfigBuilder {
   }
 
   /**
+   * Add Tailwind CSS-specific rules and plugins.
+   * Requires tailwind option to be set to true.
+   */
+  withTailwind(options?: Options): this {
+    const mergedOptions = { ...this.options, ...options };
+    if (!mergedOptions.tailwind) {
+      console.warn(
+        'ESLintConfigBuilder: Tailwind config added but tailwind option is not set. ' +
+        'Consider calling setOptions({ tailwind: true }) first.'
+      );
+    }
+    this.pendingConfigs.push(tailwindConfig(mergedOptions));
+    this.tailwindAdded = true;
+    return this;
+  }
+
+  /**
    * Add a custom config object directly.
    * Useful for adding project-specific rules or third-party configs.
    */
@@ -155,6 +174,10 @@ export class ESLintConfigBuilder {
       this.withReact(mergedOptions);
     }
 
+    if (mergedOptions.tailwind) {
+      this.withTailwind(mergedOptions);
+    }
+
     return this;
   }
 
@@ -180,6 +203,7 @@ export class ESLintConfigBuilder {
     this.fileNamesAdded = false;
     this.typescriptAdded = false;
     this.reactAdded = false;
+    this.tailwindAdded = false;
     return this;
   }
 
@@ -215,5 +239,9 @@ export class ESLintConfigBuilder {
 
   hasReact(): boolean {
     return this.reactAdded;
+  }
+
+  hasTailwind(): boolean {
+    return this.tailwindAdded;
   }
 }

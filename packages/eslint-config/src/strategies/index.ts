@@ -7,7 +7,8 @@ export {
   TestStrategy,
   AllFilesStrategy,
   SourceFilesStrategy,
-  ComponentFilesStrategy
+  ComponentFilesStrategy,
+  TailwindStrategy
 } from './file-type-strategy';
 
 export {

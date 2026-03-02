@@ -8,7 +8,8 @@ import {
   TestStrategy,
   AllFilesStrategy,
   SourceFilesStrategy,
-  ComponentFilesStrategy
+  ComponentFilesStrategy,
+  TailwindStrategy
 } from './file-type-strategy';
 
 /**
@@ -28,6 +29,7 @@ export class StrategyManager {
     this.register(new AllFilesStrategy());
     this.register(new SourceFilesStrategy());
     this.register(new ComponentFilesStrategy());
+    this.register(new TailwindStrategy());
   }
 
   /**
@@ -111,6 +113,13 @@ export class StrategyManager {
    */
   getTestFiles(options: Options): string[] {
     return this.getFilePatterns('test', options);
+  }
+
+  /**
+   * Convenience method: Get Tailwind CSS file patterns.
+   */
+  getTailwindFiles(options: Options): string[] {
+    return this.getFilePatterns('tailwind', options);
   }
 }
 

@@ -49,18 +49,18 @@ React and TypeScript are auto-detected from your `package.json` / `tsconfig.json
 
 ```js
 // eslint.config.mjs
-import dauphaihau from '@dauphaihau/eslint-config'
+import eslintConfig from '@dauphaihau/eslint-config'
 
-export default dauphaihau()
+export default eslintConfig()
 ```
 
 ### Explicit options
 
 ```js
 // eslint.config.mjs
-import dauphaihau from '@dauphaihau/eslint-config'
+import eslintConfig from '@dauphaihau/eslint-config'
 
-export default dauphaihau({
+export default eslintConfig({
   typescript: true,
   react: true,
 })

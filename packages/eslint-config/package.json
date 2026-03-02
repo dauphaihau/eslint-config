@@ -12,7 +12,7 @@
     "README.md"
   ],
   "scripts": {
-    "build": "pnpm exec tsup src/index.ts --dts --format esm --external @eslint/js --external @stylistic/eslint-plugin --external typescript-eslint --external eslint-plugin-check-file --external eslint-plugin-react --external eslint-plugin-react-hooks --external eslint-plugin-react-refresh",
+    "build": "pnpm exec tsup src/index.ts --dts --format esm --external @eslint/js --external @stylistic/eslint-plugin --external typescript-eslint --external eslint-plugin-check-file --external eslint-plugin-react --external eslint-plugin-react-hooks --external eslint-plugin-react-refresh --external eslint-plugin-tailwindcss",
     "prepack": "cp ../../README.md ./README.md",
     "prepublishOnly": "pnpm build",
     "lint": "eslint .",
@@ -30,7 +30,8 @@
     "typescript-eslint": "^8.56.1"
   },
   "peerDependencies": {
-    "eslint": "^9.0.0 || ^10.0.0"
+    "eslint": "^9.0.0 || ^10.0.0",
+    "eslint-plugin-tailwindcss": ">=3.0.0"
   },
   "peerDependenciesMeta": {
     "eslint-plugin-react": {
@@ -41,6 +42,9 @@
     },
     "eslint-plugin-react-refresh": {
       "optional": true
+    },
+    "eslint-plugin-tailwindcss": {
+      "optional": true
     }
   },
   "devDependencies": {
@@ -49,6 +53,7 @@
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.5.2",
+    "eslint-plugin-tailwindcss": "^3.18.2",
     "jiti": "^2.0.0",
     "tsup": "^8.0.0",
     "typescript": "^5.4.0"

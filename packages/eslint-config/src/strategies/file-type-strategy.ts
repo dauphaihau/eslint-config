@@ -171,3 +171,36 @@ export class ComponentFilesStrategy implements FileTypeStrategy {
     return true; // Always applies (even if empty, it's valid)
   }
 }
+
+/**
+ * Strategy for Tailwind CSS files (HTML, JSX/TSX, Vue).
+ * Covers all file types that can contain Tailwind class name attributes.
+ */
+export class TailwindStrategy implements FileTypeStrategy {
+  getName(): string {
+    return 'tailwind';
+  }
+
+  getFilePatterns(options: Options): string[] {
+    const patterns: string[] = ['**/*.html'];
+
+    if (options.react) {
+      patterns.push(options.typescript ? '**/*.{jsx,tsx}' : '**/*.jsx');
+    }
+
+    if (options.vue) {
+      patterns.push('**/*.vue');
+    }
+
+    if (!options.react && !options.vue) {
+      // Fallback: cover JSX/TSX files and HTML where Tailwind classes appear
+      patterns.push(options.typescript ? '**/*.{jsx,tsx}' : '**/*.jsx');
+    }
+
+    return patterns;
+  }
+
+  shouldApply(options: Options): boolean {
+    return options.tailwind === true;
+  }
+}
