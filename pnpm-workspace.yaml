@@ -3,3 +3,4 @@ packages:
   - "playground/ts"
   - "playground/js"
   - "playground/react"
+  - "playground/tailwind"
