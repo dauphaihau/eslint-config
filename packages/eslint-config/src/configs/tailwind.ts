@@ -1,11 +1,16 @@
 import type { Config } from 'eslint/config';
 import type { Options } from '..';
 import { strategyManager } from '../strategies';
+import fs from 'node:fs';
+
+const tailwindConfigFile =
+  ['tailwind.config.js', 'tailwind.config.ts', 'tailwind.config.mjs', 'tailwind.config.cjs']
+    .find(f => fs.existsSync(f));
 
 export async function tailwindConfig(options: Options = {}): Promise<Config[]> {
   const tailwindFiles = strategyManager.getTailwindFiles(options);
 
-  if (tailwindFiles.length === 0) {
+  if (tailwindFiles.length === 0 || !tailwindConfigFile) {
     return [];
   }
 
@@ -18,9 +23,8 @@ export async function tailwindConfig(options: Options = {}): Promise<Config[]> {
       plugins: { tailwindcss: tailwind },
       settings: {
         tailwindcss: {
-          // Common utility function callees to analyze for class names
+          config: tailwindConfigFile,
           callees: ['classnames', 'clsx', 'ctl', 'cva', 'cx', 'cn'],
-          // Support tagged template literals: tw`bg-blue-500`
           tags: ['tw'],
         },
       },
