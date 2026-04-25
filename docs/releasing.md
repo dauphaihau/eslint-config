@@ -33,13 +33,13 @@ git tag v0.2.1
 
 **4. Push commits and tags**
 ```bash
-pnpm push
+pnpm push:tags
 ```
 
 **5. Publish to npm**
 ```bash
-pnpm run publish
+pnpm ship
 ```
 
 > All commands should be run from the **root** of the monorepo.
-> Use `pnpm run publish`, not `pnpm publish`, so pnpm runs the script from `package.json`.
+> Use `pnpm ship`, not `pnpm publish`, so pnpm runs the repo script instead of pnpm's built-in publish command.

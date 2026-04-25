@@ -21,8 +21,8 @@
     "version:patch": "pnpm build && pnpm version patch",
     "version:minor": "pnpm build && pnpm version minor",
     "version:major": "pnpm build && pnpm version major",
-    "push": "git push --follow-tags",
-    "publish": "pnpm publish --no-git-checks"
+    "push:tags": "git push --follow-tags",
+    "ship": "pnpm publish --no-git-checks"
   },
   "dependencies": {
     "@eslint/js": "^10.0.0",
