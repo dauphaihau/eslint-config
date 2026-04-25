@@ -7,28 +7,22 @@
 
 ## Installation
 
-### Basic (TypeScript / JS only)
-
 ```bash
 npm i -D @dauphaihau/eslint-config
 ```
 
-### React projects
+And create `eslint.config.mjs` in your project root:
 
-React plugins are optional peer dependencies — install them alongside the config:
+```js
+// eslint.config.mjs
+import dauphaihau from '@dauphaihau/eslint-config'
 
-```bash
-# npm
-npm i -D @dauphaihau/eslint-config eslint-plugin-react eslint-plugin-react-hooks eslint-plugin-react-refresh
-
-# pnpm
-pnpm add -D @dauphaihau/eslint-config eslint-plugin-react eslint-plugin-react-hooks eslint-plugin-react-refresh
-
-# yarn
-yarn add -D @dauphaihau/eslint-config eslint-plugin-react eslint-plugin-react-hooks eslint-plugin-react-refresh
+export default dauphaihau()
 ```
 
-### Add lint scripts
+### Add script for package.json
+
+For example:
 
 ```json
 {
@@ -41,31 +35,27 @@ yarn add -D @dauphaihau/eslint-config eslint-plugin-react eslint-plugin-react-ho
 
 ## Usage
 
-Create `eslint.config.mjs` in your project root.
-
-### Auto-detection
-
-React and TypeScript are auto-detected from your `package.json` / `tsconfig.json` — no config needed in most cases:
+### Basic
+Normally you only need to import the dauphaihau preset:
 
 ```js
-// eslint.config.mjs
-import eslintConfig from '@dauphaihau/eslint-config'
+// eslint.config.js
+import dauphaihau from '@dauphaihau/eslint-config'
 
-export default eslintConfig()
+export default dauphaihau()
 ```
 
-### Explicit options
+### Customize
 
 ```js
-// eslint.config.mjs
-import eslintConfig from '@dauphaihau/eslint-config'
+// eslint.config.js
+import dauphaihau from '@dauphaihau/eslint-config'
 
-export default eslintConfig({
+export default dauphaihau({
   typescript: true,
-  react: true,
 })
-```
 
+```
 ## License
 
 MIT

@@ -15,8 +15,10 @@
     "fix:ts": "pnpm --filter ts fix",
     "fix:react": "pnpm --filter react fix",
     "fix:tailwind": "pnpm --filter tailwind fix",
-    "release:patch": "pnpm --filter @dauphaihau/eslint-config release:patch",
-    "release:minor": "pnpm --filter @dauphaihau/eslint-config release:minor",
-    "release:major": "pnpm --filter @dauphaihau/eslint-config release:major"
+    "version:patch": "pnpm --filter @dauphaihau/eslint-config version:patch",
+    "version:minor": "pnpm --filter @dauphaihau/eslint-config version:minor",
+    "version:major": "pnpm --filter @dauphaihau/eslint-config version:major",
+    "push": "git push --follow-tags",
+    "publish": "pnpm --filter @dauphaihau/eslint-config publish --no-git-checks"
   }
 }
