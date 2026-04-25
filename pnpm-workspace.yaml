@@ -4,3 +4,4 @@ packages:
   - "playground/js"
   - "playground/react"
   - "playground/tailwind"
+  - "playground/vue"

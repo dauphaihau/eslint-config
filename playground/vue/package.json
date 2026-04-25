@@ -1,0 +1,17 @@
+{
+  "name": "vue",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "lint": "eslint .",
+    "fix": "eslint . --fix"
+  },
+  "devDependencies": {
+    "eslint": "^10.0.0",
+    "@dauphaihau/eslint-config": "workspace:*",
+    "vue": "^3.0.0",
+    "@vue/tsconfig": "^0.7.0",
+    "eslint-plugin-vue": "^10.0.0",
+    "vue-eslint-parser": "^10.0.0"
+  }
+}

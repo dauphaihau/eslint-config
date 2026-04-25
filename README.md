@@ -16,6 +16,7 @@ playground/js           JS example project
 playground/ts           TS example project
 playground/react        React example project
 playground/tailwind     Tailwind example project
+playground/vue          Vue example project
 docs/                   Supporting repo docs
 ```
 
@@ -36,10 +37,12 @@ pnpm lint:js
 pnpm lint:ts
 pnpm lint:react
 pnpm lint:tailwind
+pnpm lint:vue
 pnpm fix:js
 pnpm fix:ts
 pnpm fix:react
 pnpm fix:tailwind
+pnpm fix:vue
 ```
 
 ## Package Usage

@@ -2,7 +2,7 @@
 
 - Auto fix for formatting (aimed to be used standalone without Prettier)
 - Opinionated, but very customizable
-- Auto-detects your tech stack (React, TypeScript, Tailwind, etc.)
+- Auto-detects your tech stack (React, Vue, TypeScript, Tailwind, etc.)
 - ESLint Flat config, compose easily!
 
 ## Installation
@@ -15,6 +15,12 @@ If your project uses React, install the React ESLint plugins as well:
 
 ```bash
 npm i -D eslint-plugin-react eslint-plugin-react-hooks eslint-plugin-react-refresh
+```
+
+If your project uses Vue, install the Vue ESLint plugins as well:
+
+```bash
+npm i -D eslint-plugin-vue vue-eslint-parser
 ```
 
 If your project uses Tailwind CSS, install the Tailwind ESLint plugin as well:
@@ -74,6 +80,7 @@ import { defineConfig } from 'eslint/config'
 
 export default defineConfig([
   ...(await dauphaihauConfig({
+    vue: false,      // disable Vue rules
     tailwind: false, // disable Tailwind rules
   })),
 

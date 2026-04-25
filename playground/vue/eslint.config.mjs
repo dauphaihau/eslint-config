@@ -1,0 +1,25 @@
+import eslintConfig from '@dauphaihau/eslint-config';
+import { fileURLToPath } from 'url';
+import { dirname, resolve } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+const config = await eslintConfig();
+
+// Set tsconfigRootDir for TypeScript parser to resolve this directory's tsconfig.json
+export default config.map((cfg) => {
+  if (cfg.languageOptions?.parserOptions) {
+    return {
+      ...cfg,
+      languageOptions: {
+        ...cfg.languageOptions,
+        parserOptions: {
+          ...cfg.languageOptions.parserOptions,
+          tsconfigRootDir: resolve(__dirname),
+        },
+      },
+    };
+  }
+  return cfg;
+});

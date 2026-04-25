@@ -32,6 +32,24 @@ const hasReact = (): boolean => {
   return false;
 };
 
+const hasVue = (): boolean => {
+  try {
+    const packageJsonPath = 'package.json';
+    if (fs.existsSync(packageJsonPath)) {
+      const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf-8'));
+      const deps = {
+        ...packageJson.dependencies,
+        ...packageJson.devDependencies,
+        ...packageJson.peerDependencies,
+      };
+      return 'vue' in deps;
+    }
+  } catch {
+    // If we can't read package.json, return false
+  }
+  return false;
+};
+
 const hasTailwind = (): boolean => {
   try {
     const packageJsonPath = 'package.json';
@@ -69,6 +87,7 @@ export default function eslintConfig(options: Options = {}): Promise<Config[]> {
   const finalOptions = {
     typescript: options.typescript ?? hasTsConfig,
     react: options.react ?? hasReact(),
+    vue: options.vue ?? hasVue(),
     tailwind: options.tailwind ?? hasTailwind(),
     ...options,
   };

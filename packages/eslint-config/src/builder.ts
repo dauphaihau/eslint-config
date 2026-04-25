@@ -4,6 +4,7 @@ import { maxLinesConfig } from './configs/max-lines';
 import { typescriptConfig } from './configs/typescript';
 import { reactConfig } from './configs/react';
 import { tailwindConfig } from './configs/tailwind';
+import { vueConfig } from './configs/vue';
 import { namingConfig } from './configs/naming';
 import { fileNamesConfig } from './configs/file-names';
 import type { Options } from './index';
@@ -33,6 +34,7 @@ export class ESLintConfigBuilder {
   private fileNamesAdded = false;
   private typescriptAdded = false;
   private reactAdded = false;
+  private vueAdded = false;
   private tailwindAdded = false;
 
   /**
@@ -123,6 +125,23 @@ export class ESLintConfigBuilder {
   }
 
   /**
+   * Add Vue-specific rules and plugins.
+   * Requires vue option to be set to true.
+   */
+  withVue(options?: Options): this {
+    const mergedOptions = { ...this.options, ...options };
+    if (!mergedOptions.vue) {
+      console.warn(
+        'ESLintConfigBuilder: Vue config added but vue option is not set. ' +
+        'Consider calling setOptions({ vue: true }) first.'
+      );
+    }
+    this.pendingConfigs.push(vueConfig(mergedOptions));
+    this.vueAdded = true;
+    return this;
+  }
+
+  /**
    * Add Tailwind CSS-specific rules and plugins.
    * Requires tailwind option to be set to true.
    */
@@ -174,6 +193,10 @@ export class ESLintConfigBuilder {
       this.withReact(mergedOptions);
     }
 
+    if (mergedOptions.vue) {
+      this.withVue(mergedOptions);
+    }
+
     if (mergedOptions.tailwind) {
       this.withTailwind(mergedOptions);
     }
@@ -203,6 +226,7 @@ export class ESLintConfigBuilder {
     this.fileNamesAdded = false;
     this.typescriptAdded = false;
     this.reactAdded = false;
+    this.vueAdded = false;
     this.tailwindAdded = false;
     return this;
   }
@@ -239,6 +263,10 @@ export class ESLintConfigBuilder {
 
   hasReact(): boolean {
     return this.reactAdded;
+  }
+
+  hasVue(): boolean {
+    return this.vueAdded;
   }
 
   hasTailwind(): boolean {
