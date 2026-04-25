@@ -23,12 +23,12 @@ pnpm version:major   # breaking changes
 **2. Commit the version bump**
 ```bash
 git add packages/eslint-config/package.json
-git commit -m "chore(release): bump eslint-config to 0.2.1"
+git commit -m "chore(release): bump eslint-config to <version>"
 ```
 
 **3. Tag the release**
 ```bash
-git tag v0.2.1
+git tag -a v<version> -m "v<version>"
 ```
 
 **4. Push commits and tags**
@@ -43,3 +43,4 @@ pnpm ship
 
 > All commands should be run from the **root** of the monorepo.
 > Use `pnpm ship`, not `pnpm publish`, so pnpm runs the repo script instead of pnpm's built-in publish command.
+> `pnpm ship` triggers `prepublishOnly` which rebuilds before publishing — this is expected.

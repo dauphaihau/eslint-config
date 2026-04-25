@@ -2,7 +2,7 @@
 
 - Auto fix for formatting (aimed to be used standalone without Prettier)
 - Opinionated, but very customizable
-- Optional TypeScript support
+- Auto-detects your tech stack (React, TypeScript, Tailwind, etc.)
 - ESLint Flat config, compose easily!
 
 ## Installation
@@ -15,9 +15,12 @@ And create `eslint.config.mjs` in your project root:
 
 ```js
 // eslint.config.mjs
-import dauphaihau from '@dauphaihau/eslint-config'
+import dauphaihauConfig from '@dauphaihau/eslint-config'
+import { defineConfig } from 'eslint/config'
 
-export default dauphaihau()
+export default defineConfig([
+  ...(await dauphaihauConfig())
+])
 ```
 
 ### Add script for package.json
@@ -36,25 +39,40 @@ For example:
 ## Usage
 
 ### Basic
-Normally you only need to import the dauphaihau preset:
+Normally you only need to import the dauphaihauConfig preset:
 
 ```js
 // eslint.config.js
-import dauphaihau from '@dauphaihau/eslint-config'
+import dauphaihauConfig from '@dauphaihau/eslint-config'
+import { defineConfig } from 'eslint/config'
 
-export default dauphaihau()
+export default defineConfig([
+  ...(await dauphaihauConfig())
+])
 ```
 
 ### Customize
 
+The config auto-detects your tech stack. Pass `false` to explicitly disable rules for a specific stack:
+
 ```js
 // eslint.config.js
-import dauphaihau from '@dauphaihau/eslint-config'
+import dauphaihauConfig from '@dauphaihau/eslint-config'
+import { defineConfig } from 'eslint/config'
 
-export default dauphaihau({
-  typescript: true,
-})
+export default defineConfig([
+  ...(await dauphaihauConfig({
+    tailwind: false, // disable Tailwind rules
+  })),
 
+  // Your configs and overrides
+  {
+    files: ['**/*.{ts,tsx}'],
+    rules: {
+      '@typescript-eslint/explicit-function-return-type': 'off',
+    },
+  },
+])
 ```
 ## License
 
