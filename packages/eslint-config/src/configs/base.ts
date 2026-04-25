@@ -76,7 +76,14 @@ export function baseConfig(options: Options = {}) {
         // Operators
         '@stylistic/multiline-ternary': ['error', 'always-multiline'],
         '@stylistic/no-mixed-operators': 'error',
-        '@stylistic/operator-linebreak': ['error', 'after'],
+        '@stylistic/operator-linebreak': ['error', 'after', {
+          overrides: {
+            '?': 'before',
+            '|': 'before',
+            ':': 'before',
+            '||': 'before', 
+          },
+        }],
         '@stylistic/dot-location': ['error', 'property'],
 
         // Disallow
