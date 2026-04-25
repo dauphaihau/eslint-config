@@ -29,8 +29,8 @@ export function maxLinesConfig(options: Options = {}) {
     },
 
     // Service / logic files (using strategy pattern)
-    ...(tsFiles.length > 0 ?
-      [{
+    ...(tsFiles.length > 0
+      ? [{
         name: 'dauphaihau/max-lines',
         files: tsFiles,
         rules: {
@@ -39,22 +39,22 @@ export function maxLinesConfig(options: Options = {}) {
             { max: defaultConfig.logic },
           ],
         },
-      }] :
-      []),
+      }]
+      : []),
 
     // Test files (using strategy pattern)
-    ...(testFiles.length > 0 ?
-      [{
+    ...(testFiles.length > 0
+      ? [{
         files: testFiles,
         rules: {
           'max-lines': 'off', // or allow 800
         },
-      }] :
-      []),
+      }]
+      : []),
 
     // React components files (using strategy pattern)
-    ...(reactFiles.length > 0 ?
-      [{
+    ...(reactFiles.length > 0
+      ? [{
         files: reactFiles,
         rules: {
           'max-lines': [
@@ -62,12 +62,12 @@ export function maxLinesConfig(options: Options = {}) {
             { max: defaultConfig.ui, skipBlankLines: true, skipComments: true },
           ],
         },
-      }] :
-      []),
+      }]
+      : []),
 
     // Vue components files (using strategy pattern)
-    ...(vueFiles.length > 0 ?
-      [{
+    ...(vueFiles.length > 0
+      ? [{
         files: vueFiles,
         rules: {
           'max-lines': [
@@ -75,8 +75,8 @@ export function maxLinesConfig(options: Options = {}) {
             { max: defaultConfig.ui, skipBlankLines: true, skipComments: true },
           ],
         },
-      }] :
-      []),
+      }]
+      : []),
   ];
 
 }

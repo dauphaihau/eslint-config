@@ -48,9 +48,9 @@ export class TypeScriptStrategy implements FileTypeStrategy {
   }
 
   getFilePatterns(options: Options): string[] {
-    return options.typescript ?
-      ['**/*.{ts,tsx}'] :
-      [];
+    return options.typescript
+      ? ['**/*.{ts,tsx}']
+      : [];
   }
 
   shouldApply(options: Options): boolean {
@@ -124,9 +124,9 @@ export class AllFilesStrategy implements FileTypeStrategy {
   }
 
   getFilePatterns(options: Options): string[] {
-    return options.typescript ?
-      ['**/*.{js,mjs,cjs,jsx,ts,tsx}'] :
-      ['**/*.{js,mjs,cjs,jsx}'];
+    return options.typescript
+      ? ['**/*.{js,mjs,cjs,jsx,ts,tsx}']
+      : ['**/*.{js,mjs,cjs,jsx}'];
   }
 
   shouldApply(_options: Options): boolean {
@@ -143,9 +143,9 @@ export class SourceFilesStrategy implements FileTypeStrategy {
   }
 
   getFilePatterns(options: Options): string[] {
-    return options.typescript ?
-      ['**/*.{js,mjs,cjs,ts}'] :
-      ['**/*.{js,mjs,cjs}'];
+    return options.typescript
+      ? ['**/*.{js,mjs,cjs,ts}']
+      : ['**/*.{js,mjs,cjs}'];
   }
 
   shouldApply(_options: Options): boolean {
@@ -162,9 +162,9 @@ export class ComponentFilesStrategy implements FileTypeStrategy {
   }
 
   getFilePatterns(options: Options): string[] {
-    return options.typescript ?
-      ['**/*.tsx'] :
-      ['**/*.jsx'];
+    return options.typescript
+      ? ['**/*.tsx']
+      : ['**/*.jsx'];
   }
 
   shouldApply(_options: Options): boolean {

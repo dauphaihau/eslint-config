@@ -11,8 +11,8 @@ export type Options = {
 
 
 const hasTsConfig =
-  fs.existsSync('tsconfig.json') ||
-  fs.existsSync('tsconfig.base.json');
+  fs.existsSync('tsconfig.json')
+  || fs.existsSync('tsconfig.base.json');
 
 const hasReact = (): boolean => {
   try {
@@ -26,7 +26,8 @@ const hasReact = (): boolean => {
       };
       return 'react' in deps;
     }
-  } catch {
+  }
+  catch {
     // If we can't read package.json, return false
   }
   return false;
@@ -44,7 +45,8 @@ const hasVue = (): boolean => {
       };
       return 'vue' in deps;
     }
-  } catch {
+  }
+  catch {
     // If we can't read package.json, return false
   }
   return false;
@@ -62,14 +64,15 @@ const hasTailwind = (): boolean => {
       };
       if ('tailwindcss' in deps) return true;
     }
-  } catch {
+  }
+  catch {
     // If we can't read package.json, fall through to file checks
   }
   return (
-    fs.existsSync('tailwind.config.js') ||
-    fs.existsSync('tailwind.config.ts') ||
-    fs.existsSync('tailwind.config.mjs') ||
-    fs.existsSync('tailwind.config.cjs')
+    fs.existsSync('tailwind.config.js')
+    || fs.existsSync('tailwind.config.ts')
+    || fs.existsSync('tailwind.config.mjs')
+    || fs.existsSync('tailwind.config.cjs')
   );
 };
 

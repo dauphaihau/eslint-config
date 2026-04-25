@@ -85,6 +85,12 @@ const baseNamingSelectors = [
     format: null, // allow anything -> API response, snake_case keys allowed
   },
   {
+    // External type declarations may expose quoted keys such as 'flat/recommended'.
+    selector: 'typeProperty',
+    modifiers: ['requiresQuotes'],
+    format: null,
+  },
+  {
     // internal domain types
     selector: 'typeProperty',
     format: ['camelCase'],

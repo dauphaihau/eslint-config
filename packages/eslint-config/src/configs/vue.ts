@@ -28,19 +28,19 @@ export async function vueConfig(options: Options = {}): Promise<Config[]> {
 
   const parserConfig: Config = tsParser
     ? {
-        ...parserSetup,
-        languageOptions: {
-          ...parserSetup.languageOptions,
-          parserOptions: {
-            ...(parserSetup.languageOptions as { parserOptions?: object } | undefined)?.parserOptions,
-            parser: tsParser,
-          },
+      ...parserSetup,
+      languageOptions: {
+        ...parserSetup.languageOptions,
+        parserOptions: {
+          ...(parserSetup.languageOptions as { parserOptions?: object } | undefined)?.parserOptions,
+          parser: tsParser,
         },
-      }
+      },
+    }
     : parserSetup;
 
   return [
-    pluginSetup,  // registers vue plugin globally
+    pluginSetup, // registers vue plugin globally
     parserConfig, // vue-eslint-parser + processor for *.vue files
     {
       name: 'dauphaihau/vue',

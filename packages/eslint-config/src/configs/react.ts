@@ -101,4 +101,3 @@ export async function reactConfig(options: Options = {}): Promise<Config[]> {
     },
   ];
 }
-
