@@ -20,14 +20,26 @@ pnpm version:minor   # new rules or features, non-breaking
 pnpm version:major   # breaking changes
 ```
 
-**2. Push commits and tags**
+**2. Commit the version bump**
+```bash
+git add packages/eslint-config/package.json
+git commit -m "chore(release): bump eslint-config to 0.2.1"
+```
+
+**3. Tag the release**
+```bash
+git tag v0.2.1
+```
+
+**4. Push commits and tags**
 ```bash
 pnpm push
 ```
 
-**3. Publish to npm**
+**5. Publish to npm**
 ```bash
-pnpm publish
+pnpm run publish
 ```
 
 > All commands should be run from the **root** of the monorepo.
+> Use `pnpm run publish`, not `pnpm publish`, so pnpm runs the script from `package.json`.
