@@ -17,23 +17,6 @@ const identifierQualityRules = {
 } as const;
 
 const variableNamingSelectors = [
-  // Valid examples: userName, fetchUsers, _internalValue
-  {
-    selector: ['variable', 'function'],
-    format: ['camelCase'],
-    leadingUnderscore: 'allow', // allows _privateVar
-  },
-  {
-    // Enforce UPPER_CASE for exported constants.
-    // Valid examples: API_BASE_URL, MAX_RETRY_COUNT, DEFAULT_TIMEOUT_MS
-    selector: 'variable',
-    modifiers: ['const', 'exported'],
-    format: ['UPPER_CASE'],
-    filter: {
-      regex: '^[A-Z0-9_]+$',
-      match: true,
-    },
-  },
   // ---------- Boolean naming ----------
   {
     selector: 'variable',
@@ -41,6 +24,19 @@ const variableNamingSelectors = [
     format: ['PascalCase', 'camelCase'],
     prefix: ['is', 'has', 'should', 'can', 'did', 'will'],
     filter: { regex: '^(is|has|should|can|did|will)[A-Z]', match: true },
+  },
+  {
+    // Valid examples: apiBaseUrl, DEFAULT_TIMEOUT_MS, _internalValue
+    selector: 'variable',
+    modifiers: ['const'],
+    format: ['camelCase', 'UPPER_CASE'],
+    leadingUnderscore: 'allow',
+  },
+  // Valid examples: userName, fetchUsers, _internalValue
+  {
+    selector: ['variable', 'function'],
+    format: ['camelCase'],
+    leadingUnderscore: 'allow', // allows _privateVar
   },
 ] as const;
 
@@ -155,7 +151,7 @@ export function namingConfig(options: Options = {}) {
             selector: 'variable',
             format: ['camelCase', 'PascalCase'],
             filter: {
-              regex: '^[A-Z]',
+              regex: '^[A-Z][a-zA-Z0-9]*$',
               match: true,
             },
           },
