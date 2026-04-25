@@ -13,7 +13,6 @@
   ],
   "scripts": {
     "build": "pnpm exec tsup src/index.ts --dts --format esm --external @eslint/js --external @stylistic/eslint-plugin --external typescript-eslint --external eslint-plugin-check-file --external eslint-plugin-react --external eslint-plugin-react-hooks --external eslint-plugin-react-refresh --external eslint-plugin-tailwindcss",
-    "prepack": "cp ../../README.md ./README.md",
     "prepublishOnly": "pnpm build",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",

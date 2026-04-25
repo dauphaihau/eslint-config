@@ -1,80 +1,55 @@
-# @dauphaihau/eslint-config
+# dauphaihau-eslint-config-monorepo
 
-- Auto fix for formatting (aimed to be used standalone without Prettier)
-- Opinionated, but very customizable
-- Auto-detects your tech stack (React, TypeScript, Tailwind, etc.)
-- ESLint Flat config, compose easily!
+Monorepo for the `@dauphaihau/eslint-config` package and its local playgrounds.
 
-## Installation
+## Packages
+
+| Package | Path | Purpose |
+|---|---|---|
+| `@dauphaihau/eslint-config` | `packages/eslint-config` | Published ESLint flat config package |
+
+## Repo Structure
+
+```text
+packages/eslint-config  Published package source
+playground/js           JS example project
+playground/ts           TS example project
+playground/react        React example project
+playground/tailwind     Tailwind example project
+docs/                   Supporting repo docs
+```
+
+## Development
+
+Install dependencies from the repo root:
 
 ```bash
-npm i -D @dauphaihau/eslint-config
+pnpm install
 ```
 
-And create `eslint.config.mjs` in your project root:
+Useful commands:
 
-```js
-// eslint.config.mjs
-import dauphaihauConfig from '@dauphaihau/eslint-config'
-import { defineConfig } from 'eslint/config'
-
-export default defineConfig([
-  ...(await dauphaihauConfig())
-])
+```bash
+pnpm build
+pnpm test
+pnpm lint:js
+pnpm lint:ts
+pnpm lint:react
+pnpm lint:tailwind
+pnpm fix:js
+pnpm fix:ts
+pnpm fix:react
+pnpm fix:tailwind
 ```
 
-### Add script for package.json
+## Package Usage
 
-For example:
+Consumer-facing installation and usage docs live in:
 
-```json
-{
-  "scripts": {
-    "lint": "eslint",
-    "lint:fix": "eslint --fix"
-  }
-}
-```
+- [`packages/eslint-config/README.md`](packages/eslint-config/README.md)
 
-## Usage
+## Release
 
-### Basic
-Normally you only need to import the dauphaihauConfig preset:
+Release steps are documented in:
 
-```js
-// eslint.config.js
-import dauphaihauConfig from '@dauphaihau/eslint-config'
-import { defineConfig } from 'eslint/config'
-
-export default defineConfig([
-  ...(await dauphaihauConfig())
-])
-```
-
-### Customize
-
-The config auto-detects your tech stack. Pass `false` to explicitly disable rules for a specific stack:
-
-```js
-// eslint.config.js
-import dauphaihauConfig from '@dauphaihau/eslint-config'
-import { defineConfig } from 'eslint/config'
-
-export default defineConfig([
-  ...(await dauphaihauConfig({
-    tailwind: false, // disable Tailwind rules
-  })),
-
-  // Your configs and overrides
-  {
-    files: ['**/*.{ts,tsx}'],
-    rules: {
-      '@typescript-eslint/explicit-function-return-type': 'off',
-    },
-  },
-])
-```
-## License
-
-MIT
-
+- [`docs/releasing.md`](docs/releasing.md)
