@@ -11,25 +11,20 @@
 npm i -D @dauphaihau/eslint-config
 ```
 
-If your project uses React, install the React ESLint plugins as well:
+Install extra plugins only if your project uses them:
 
 ```bash
+# React
 npm i -D eslint-plugin-react eslint-plugin-react-hooks eslint-plugin-react-refresh
-```
 
-If your project uses Vue, install the Vue ESLint plugins as well:
-
-```bash
+# Vue
 npm i -D eslint-plugin-vue vue-eslint-parser
-```
 
-If your project uses Tailwind CSS, install the Tailwind ESLint plugin as well:
-
-```bash
+# Tailwind CSS
 npm i -D eslint-plugin-tailwindcss
 ```
 
-And create `eslint.config.mjs` in your project root:
+Create `eslint.config.mjs` in your project root:
 
 ```js
 // eslint.config.mjs
@@ -57,17 +52,11 @@ For example:
 ## Usage
 
 ### Basic
-Normally you only need to import the dauphaihauConfig preset:
+Normally the default preset is enough:
 
 ```js
-// eslint.config.js
-import dauphaihauConfig from '@dauphaihau/eslint-config'
-import { defineConfig } from 'eslint/config'
-
-export default defineConfig([
-  ...(await dauphaihauConfig())
-])
-```
+export default defineConfig([...(await dauphaihauConfig())])
+``` 
 
 ### Customize
 
