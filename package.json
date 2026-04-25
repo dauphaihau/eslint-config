@@ -5,6 +5,7 @@
   "scripts": {
     "build": "pnpm -r --filter @dauphaihau/eslint-config build",
     "dev": "pnpm -r --filter @dauphaihau/eslint-config dev",
+    "test": "pnpm --filter @dauphaihau/eslint-config test",
     "lint:playground": "pnpm --filter ts lint && pnpm --filter js lint",
     "fix:playground": "pnpm --filter ts fix && pnpm --filter js fix",
     "lint:ts": "pnpm --filter ts lint",

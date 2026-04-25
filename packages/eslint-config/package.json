@@ -17,6 +17,7 @@
     "prepublishOnly": "pnpm build",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
+    "test": "vitest run",
     "typecheck": "tsc --noEmit",
     "version:patch": "pnpm build && pnpm version patch",
     "version:minor": "pnpm build && pnpm version minor",
@@ -58,6 +59,7 @@
     "eslint-plugin-tailwindcss": "^3.18.2",
     "jiti": "^2.0.0",
     "tsup": "^8.0.0",
-    "typescript": "^5.4.0"
+    "typescript": "^5.4.0",
+    "vitest": "^3.2.4"
   }
 }
