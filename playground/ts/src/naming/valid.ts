@@ -4,6 +4,8 @@
 // const myVariable = 42;
 // const anotherVariable = 'hello';
 // const _privateVariable = 'private';
+// const users = [];
+// const responseBody = {};
 
 // // Valid camelCase functions
 // function myFunction() {
@@ -39,10 +41,14 @@
 //   value: string
 // };
 
-// // Valid UPPER_CASE constants (matching the regex pattern)
-// const API_KEY = 'secret';
-// const MAX_RETRIES = 3;
-// const CONFIG_VALUE = 'config';
+// // Valid exported constants in UPPER_CASE
+// export const API_KEY = 'secret';
+// export const MAX_RETRIES = 3;
+// export const CONFIG_VALUE = 'config';
+
+// // Valid local const values in camelCase
+// const apiKey = 'secret';
+// const maxRetries = 3;
 
 // // Valid object properties (camelCase)
 // const obj = {

@@ -9,8 +9,16 @@ const my_variable = 42; // Error: should be myVariable
 // // Invalid: UPPER_CASE variable that's not const (should be camelCase)
 // const MY_VARIABLE = 42; // Error: should be myVariable
 
-// // Invalid: camelCase const that matches UPPER_CASE pattern but is lowercase
-// const api_key = 'secret'; // Error: should be API_KEY or apiKey
+// // Invalid: short identifier (id-length)
+// const a = 1; // Error: identifier is too short
+
+// // Invalid: vague placeholder names (id-denylist)
+// const arr = [1, 2, 3]; // Error: prefer a domain-specific name like users/items
+// const obj = { id: 1 }; // Error: prefer a domain-specific name like user/payload
+// const data = fetchData(); // Error: prefer a domain-specific name like responseBody/result
+
+// // Invalid: exported const must be UPPER_CASE
+// export const apiKey = 'secret'; // Error: should be API_KEY
 
 // // Invalid: snake_case function (should be camelCase)
 // function my_function() { // Error: should be myFunction
