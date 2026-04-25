@@ -6,6 +6,8 @@
     "build": "pnpm -r --filter @dauphaihau/eslint-config build",
     "dev": "pnpm -r --filter @dauphaihau/eslint-config dev",
     "test": "pnpm --filter @dauphaihau/eslint-config test",
+    "lint:package": "pnpm --filter @dauphaihau/eslint-config lint",
+    "fix:package": "pnpm --filter @dauphaihau/eslint-config lint:fix",
     "lint:playground": "pnpm --filter ts lint && pnpm --filter js lint",
     "fix:playground": "pnpm --filter ts fix && pnpm --filter js fix",
     "lint:ts": "pnpm --filter ts lint",
