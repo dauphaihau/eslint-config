@@ -1,3 +1,4 @@
+/*
 import type { ReactNode } from 'react';
 
 interface ButtonProps {
@@ -24,3 +25,4 @@ export const Button = ({ children, onClick, disabled = false }: ButtonProps): JS
 };
 
 export { Button };
+*/

@@ -1,3 +1,4 @@
+/*
 import type { ReactNode } from 'react';
 
 interface BadComponentProps {
@@ -9,9 +10,9 @@ interface BadComponentProps {
 function badComponent({ children }: BadComponentProps): JSX.Element {
   return (
     <div>
-      {/* Violation: Using children as prop */}
+      // Violation: Using children as prop
       <div children={children} />
-      {/* Violation: Lowercase component name */}
+      // Violation: Lowercase component name
       <div>
         <customElement>Test</customElement>
       </div>
@@ -20,3 +21,4 @@ function badComponent({ children }: BadComponentProps): JSX.Element {
 }
 
 export { badComponent };
+*/

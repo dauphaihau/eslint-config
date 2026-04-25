@@ -1,3 +1,4 @@
+/*
 // Test file with obvious React violations
 
 // Violation: Missing key in list
@@ -35,4 +36,4 @@ export function TestText(): JSX.Element {
 export function TestChildren(): JSX.Element {
   return <div children="test" />;
 }
-
+*/

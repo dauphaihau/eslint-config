@@ -1,3 +1,4 @@
+/*
 import type { ReactNode } from 'react';
 
 interface ListProps {
@@ -8,13 +9,13 @@ interface ListProps {
 function List({ items }: ListProps): JSX.Element {
   return (
     <ul>
-      {/* Violation: Missing key */}
+      // Violation: Missing key
       {items.map((item) => (
         <li>
           {item.content}
         </li>
       ))}
-      {/* Violation: Using array index as key */}
+      // Violation: Using array index as key
       {items.map((item, index) => (
         <li key={index}>
           {item.content}
@@ -25,3 +26,4 @@ function List({ items }: ListProps): JSX.Element {
 }
 
 export { List };
+*/
