@@ -11,6 +11,18 @@
 npm i -D @dauphaihau/eslint-config
 ```
 
+If your project uses React, install the React ESLint plugins as well:
+
+```bash
+npm i -D eslint-plugin-react eslint-plugin-react-hooks eslint-plugin-react-refresh
+```
+
+If your project uses Tailwind CSS, install the Tailwind ESLint plugin as well:
+
+```bash
+npm i -D eslint-plugin-tailwindcss
+```
+
 And create `eslint.config.mjs` in your project root:
 
 ```js
@@ -77,4 +89,3 @@ export default defineConfig([
 ## License
 
 MIT
-
