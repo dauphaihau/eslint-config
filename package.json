@@ -20,10 +20,9 @@
     "fix:react": "pnpm --filter react fix",
     "fix:tailwind": "pnpm --filter tailwind fix",
     "fix:vue": "pnpm --filter vue fix",
-    "version:patch": "pnpm --filter @dauphaihau/eslint-config version:patch",
-    "version:minor": "pnpm --filter @dauphaihau/eslint-config version:minor",
-    "version:major": "pnpm --filter @dauphaihau/eslint-config version:major",
-    "push:tags": "git push --follow-tags",
-    "ship": "pnpm --filter @dauphaihau/eslint-config publish --no-git-checks"
+    "release": "release-it --config packages/eslint-config/.release-it.json"
+  },
+  "devDependencies": {
+    "release-it": "^17"
   }
 }

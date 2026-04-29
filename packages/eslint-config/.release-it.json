@@ -1,0 +1,13 @@
+{
+  "npm": {
+    "publishPath": ".",
+    "publishArgs": ["--no-git-checks"]
+  },
+  "git": {
+    "commitMessage": "chore(release): bump eslint-config to v${version}",
+    "tagName": "v${version}"
+  },
+  "github": {
+    "release": false
+  }
+}
