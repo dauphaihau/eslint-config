@@ -22,7 +22,6 @@ export function fileNamesConfig(options: Options = {}) {
         ],
       },
     },
-    // TSX/JSX files: Allow PascalCase for React components (e.g., MyComponent.tsx)
     {
       name: 'dauphaihau/file-names-tsx',
       files: tsxFiles,
@@ -32,7 +31,7 @@ export function fileNamesConfig(options: Options = {}) {
       rules: {
         'check-file/filename-naming-convention': [
           'error',
-          { '**/*': 'PASCAL_CASE' },
+          { '**/*': 'KEBAB_CASE' },
           { ignoreMiddleExtensions: true },
         ],
       },
