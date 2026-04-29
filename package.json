@@ -20,10 +20,9 @@
     "fix:react": "pnpm --filter react fix",
     "fix:tailwind": "pnpm --filter tailwind fix",
     "fix:vue": "pnpm --filter vue fix",
-    "release": "release-it --config packages/eslint-config/.release-it.json"
+    "release": "cd packages/eslint-config && release-it"
   },
   "devDependencies": {
     "release-it": "^17"
-  },
-  "version": "0.3.1"
+  }
 }
