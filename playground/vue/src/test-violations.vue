@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import UserCard from './components/UserCard.vue';
+import UserCard from './components/user-card.vue';
 
 const userHtml = '<b>user input</b>';
 const item = 'shadowed by v-for below';

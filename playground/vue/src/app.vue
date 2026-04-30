@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import UserCard from './components/UserCard.vue'
-import CounterButton from './components/CounterButton.vue'
+import UserCard from './components/user-card.vue'
+import CounterButton from './components/counter-button.vue'
 
 const users = [
   { name: 'Alice', email: 'alice@example.com', isActive: true },
