@@ -82,6 +82,7 @@ export function baseConfig(options: Options = {}) {
             '|': 'before',
             ':': 'before',
             '||': 'before', 
+            '&&': 'before', 
           },
         }],
         '@stylistic/dot-location': ['error', 'property'],
