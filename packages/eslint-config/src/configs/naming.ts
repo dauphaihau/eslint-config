@@ -13,7 +13,7 @@ const identifierQualityRules = {
   ],
   // Discourage vague placeholder names.
   // Prefer domain-specific names such as users, payload, responseBody, or config.
-  'id-denylist': ['warn', 'foo', 'bar', 'baz', 'tmp', 'arr', 'obj', 'data'],
+  'id-denylist': ['warn', 'foo', 'bar', 'baz', 'val', 'err', 'tmp', 'arr', 'obj'],
 } as const;
 
 const variableNamingSelectors = [

@@ -49,13 +49,7 @@ export function baseConfig(options: Options = {}) {
         '@stylistic/indent': ['error', 2, { SwitchCase: 1 }],
 
         // Commas
-        '@stylistic/comma-dangle': ['error', {
-          arrays: 'always-multiline',
-          objects: 'always-multiline',
-          imports: 'never',
-          exports: 'never',
-          functions: 'never',
-        }],
+        '@stylistic/comma-dangle': ['error', 'always-multiline'],
 
         // Line breaks
         '@stylistic/object-curly-newline': ['error', {
