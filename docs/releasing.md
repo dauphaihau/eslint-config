@@ -25,10 +25,12 @@ The release flow automatically:
 - creates the release commit
 - creates the git tag
 - pushes the commit and tag
-- publishes the package to npm
+- triggers GitHub Actions trusted publishing for npm
 
 ## Notes
 
 - Commit all non-release changes before running `pnpm release`.
-- `prepublishOnly` still runs `pnpm build` as a final safety check during npm publish.
+- npm publication now happens in `.github/workflows/publish.yml` after the release tag is pushed.
+- npm trusted publishing must be configured in the npm package settings for this GitHub repository before CI can publish successfully.
+- `prepublishOnly` still runs `pnpm build` as a final safety check during npm publish in CI.
 - If package contents change after a release is published, bump the version again instead of reusing the same version.

@@ -8,8 +8,7 @@
     ]
   },
   "npm": {
-    "publish": true,
-    "publishArgs": ["--no-git-checks"]
+    "publish": false
   },
   "git": {
     "commitMessage": "chore(release): bump eslint-config to ${version}",
