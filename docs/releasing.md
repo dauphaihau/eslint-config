@@ -25,12 +25,20 @@ The release flow automatically:
 - creates the release commit
 - creates the git tag
 - pushes the commit and tag
-- triggers GitHub Actions trusted publishing for npm
 
 ## Notes
 
 - Commit all non-release changes before running `pnpm release`.
-- npm publication now happens in `.github/workflows/publish.yml` after the release tag is pushed.
-- npm trusted publishing must be configured in the npm package settings for this GitHub repository before CI can publish successfully.
-- `prepublishOnly` still runs `pnpm build` as a final safety check during npm publish in CI.
+- Trusted publishing via `.github/workflows/publish.yml` is temporarily disabled because npm is rejecting OIDC publish attempts with `E404`.
+- For now, publish `@dauphaihau/eslint-config` manually from `packages/eslint-config` after the release commit and tag are pushed.
+- `prepublishOnly` still runs `pnpm build` as a final safety check during manual npm publish.
 - If package contents change after a release is published, bump the version again instead of reusing the same version.
+
+## Temporary Manual Publish
+
+After `pnpm release` completes, publish manually from the package directory:
+
+```bash
+cd packages/eslint-config
+npm publish --access public
+```
