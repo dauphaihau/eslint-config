@@ -1,6 +1,16 @@
 {
   "name": "@dauphaihau/eslint-config",
   "version": "0.3.7",
+  "license": "MIT",
+  "homepage": "https://github.com/dauphaihau/eslint-config#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dauphaihau/eslint-config.git",
+    "directory": "packages/eslint-config"
+  },
+  "bugs": {
+    "url": "https://github.com/dauphaihau/eslint-config/issues"
+  },
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
