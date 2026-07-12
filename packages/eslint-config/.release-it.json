@@ -1,11 +1,20 @@
 {
+  "$schema": "https://unpkg.com/release-it/schema/release-it.json",
+  "hooks": {
+    "before:init": [
+      "pnpm typecheck",
+      "pnpm test",
+      "pnpm build"
+    ]
+  },
   "npm": {
-    "publishPath": ".",
+    "publish": true,
     "publishArgs": ["--no-git-checks"]
   },
   "git": {
-    "commitMessage": "chore(release): bump eslint-config to v${version}",
-    "tagName": "v${version}"
+    "commitMessage": "chore(release): bump eslint-config to ${version}",
+    "tagName": "v${version}",
+    "tagAnnotation": "Release eslint-config v${version}"
   },
   "github": {
     "release": false

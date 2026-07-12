@@ -17,12 +17,7 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "test": "vitest run",
-    "typecheck": "tsc --noEmit",
-    "version:patch": "pnpm build && pnpm version patch",
-    "version:minor": "pnpm build && pnpm version minor",
-    "version:major": "pnpm build && pnpm version major",
-    "push:tags": "git push --follow-tags",
-    "ship": "pnpm publish --no-git-checks"
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@eslint/js": "^10.0.0",

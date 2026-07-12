@@ -4,6 +4,14 @@ import {
 
 vi.mock('node:fs');
 
+type TailwindTestConfig = {
+  settings?: {
+    tailwindcss?: {
+      config?: string;
+    };
+  };
+};
+
 describe('tailwindConfig', () => {
   beforeEach(() => {
     vi.resetModules();
@@ -27,10 +35,11 @@ describe('tailwindConfig', () => {
 
     const { tailwindConfig } = await import('./tailwind');
     const result = await tailwindConfig({ tailwind: true, react: true });
+    const config = result[0] as TailwindTestConfig;
 
     expect(result).toHaveLength(1);
     expect(result[0].name).toBe('dauphaihau/tailwind');
-    expect(result[0].settings?.tailwindcss?.config).toBe('tailwind.config.js');
+    expect(config.settings?.tailwindcss?.config).toBe('tailwind.config.js');
   });
 
   it('resolves the first matching config file', async () => {
@@ -41,8 +50,9 @@ describe('tailwindConfig', () => {
 
     const { tailwindConfig } = await import('./tailwind');
     const result = await tailwindConfig({ tailwind: true, react: true });
+    const config = result[0] as TailwindTestConfig;
 
-    expect(result[0].settings?.tailwindcss?.config).toBe('tailwind.config.ts');
+    expect(config.settings?.tailwindcss?.config).toBe('tailwind.config.ts');
   });
 
   it('returns empty array when tailwind option is false, even if config file exists', async () => {

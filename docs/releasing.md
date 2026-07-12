@@ -1,59 +1,34 @@
 # Releasing
 
-Each package that has changes must be released independently by following the steps below in order.
+This repo uses `release-it` for `@dauphaihau/eslint-config`.
 
-## Packages
+## Command
 
-| Package | Path |
-|---|---|
-| `@dauphaihau/eslint-config` | `packages/eslint-config` |
-
-## Working directory
-
-Use the correct working directory for each command group:
-
-- Monorepo root:
-  - repo-wide lint, test, and build commands
-- Package directory (`packages/eslint-config`):
-  - version bump, release commit, tag push, and publish commands
-
-## Steps
-
-Before bumping the version, commit all non-release changes for the package.
-The version bump should happen only when you are ready to release, and it should be a dedicated release commit.
-
-**1. Bump version and build**
 ```bash
-cd packages/eslint-config
-pnpm version:patch   # bug fixes, minor tweaks
-pnpm version:minor   # new rules or features, non-breaking
-pnpm version:major   # breaking changes
+pnpm release
 ```
 
-**2. Commit the version bump**
-```bash
-git add package.json
-git commit -m "chore(release): bump eslint-config to <version>"
-```
+Run it from the monorepo root. `release-it` executes inside `packages/eslint-config`.
 
-**3. Tag the release**
-```bash
-git tag -a v<version> -m "v<version>"
-```
+During the release prompt, choose the correct semver bump:
 
-**4. Push commits and tags**
-```bash
-pnpm push:tags
-```
+- `patch` for fixes and small non-breaking changes
+- `minor` for new non-breaking rules or features
+- `major` for breaking changes
 
-**5. Publish to npm**
-```bash
-pnpm ship
-```
+## What `pnpm release` does
+
+The release flow automatically:
+
+- runs `typecheck`, `test`, and `build`
+- bumps the package version
+- creates the release commit
+- creates the git tag
+- pushes the commit and tag
+- publishes the package to npm
 
 ## Notes
 
-- Run the release steps above from `packages/eslint-config`, not from the monorepo root.
-- Use `pnpm ship`, not `pnpm publish`, so pnpm runs the package script instead of pnpm's built-in publish command.
-- `pnpm ship` triggers `prepublishOnly` which rebuilds before publishing. This is expected.
-- If package contents change after a release tag is pushed, bump the version again instead of reusing the same version.
+- Commit all non-release changes before running `pnpm release`.
+- `prepublishOnly` still runs `pnpm build` as a final safety check during npm publish.
+- If package contents change after a release is published, bump the version again instead of reusing the same version.
