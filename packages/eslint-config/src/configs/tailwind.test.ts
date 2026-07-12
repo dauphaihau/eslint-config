@@ -1,5 +1,5 @@
 import {
-  describe, expect, it, vi, beforeEach 
+  describe, expect, it, vi, beforeEach, 
 } from 'vitest';
 
 vi.mock('node:fs');
@@ -30,7 +30,7 @@ describe('tailwindConfig', () => {
   it('loads plugin and sets config path when tailwind.config.js exists (tailwind v3)', async () => {
     const fs = await import('node:fs');
     vi.mocked(fs.existsSync).mockImplementation(
-      (path) => path === 'tailwind.config.js'
+      (path) => path === 'tailwind.config.js',
     );
 
     const { tailwindConfig } = await import('./tailwind');
@@ -45,7 +45,7 @@ describe('tailwindConfig', () => {
   it('resolves the first matching config file', async () => {
     const fs = await import('node:fs');
     vi.mocked(fs.existsSync).mockImplementation(
-      (path) => path === 'tailwind.config.ts'
+      (path) => path === 'tailwind.config.ts',
     );
 
     const { tailwindConfig } = await import('./tailwind');
@@ -58,7 +58,7 @@ describe('tailwindConfig', () => {
   it('returns empty array when tailwind option is false, even if config file exists', async () => {
     const fs = await import('node:fs');
     vi.mocked(fs.existsSync).mockImplementation(
-      (path) => path === 'tailwind.config.js'
+      (path) => path === 'tailwind.config.js',
     );
 
     const { tailwindConfig } = await import('./tailwind');

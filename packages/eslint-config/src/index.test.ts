@@ -82,7 +82,7 @@ describe('namingConfig', () => {
         selector: 'variable',
         modifiers: ['const'],
         format: ['camelCase', 'UPPER_CASE'],
-      })
+      }),
     );
   });
 
@@ -94,7 +94,7 @@ describe('namingConfig', () => {
       expect.objectContaining({
         selector: 'function',
         format: ['PascalCase', 'camelCase'],
-      })
+      }),
     );
     expect(selectors[1]).toEqual(
       expect.objectContaining({
@@ -104,7 +104,7 @@ describe('namingConfig', () => {
           regex: '^[A-Z][a-zA-Z0-9]*$',
           match: true,
         },
-      })
+      }),
     );
   });
 });

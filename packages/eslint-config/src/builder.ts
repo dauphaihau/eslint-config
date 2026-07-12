@@ -99,7 +99,7 @@ export class ESLintConfigBuilder {
     if (!mergedOptions.typescript) {
       console.warn(
         'ESLintConfigBuilder: TypeScript config added but typescript option is not set. ' +
-        'Consider calling setOptions({ typescript: true }) first.'
+        'Consider calling setOptions({ typescript: true }) first.',
       );
     }
     this.configs.push(...(typescriptConfig(mergedOptions) as unknown as Config[]));
@@ -116,7 +116,7 @@ export class ESLintConfigBuilder {
     if (!mergedOptions.react) {
       console.warn(
         'ESLintConfigBuilder: React config added but react option is not set. ' +
-        'Consider calling setOptions({ react: true }) first.'
+        'Consider calling setOptions({ react: true }) first.',
       );
     }
     this.pendingConfigs.push(reactConfig(mergedOptions));
@@ -133,7 +133,7 @@ export class ESLintConfigBuilder {
     if (!mergedOptions.vue) {
       console.warn(
         'ESLintConfigBuilder: Vue config added but vue option is not set. ' +
-        'Consider calling setOptions({ vue: true }) first.'
+        'Consider calling setOptions({ vue: true }) first.',
       );
     }
     this.pendingConfigs.push(vueConfig(mergedOptions));
@@ -150,7 +150,7 @@ export class ESLintConfigBuilder {
     if (!mergedOptions.tailwind) {
       console.warn(
         'ESLintConfigBuilder: Tailwind config added but tailwind option is not set. ' +
-        'Consider calling setOptions({ tailwind: true }) first.'
+        'Consider calling setOptions({ tailwind: true }) first.',
       );
     }
     this.pendingConfigs.push(tailwindConfig(mergedOptions));

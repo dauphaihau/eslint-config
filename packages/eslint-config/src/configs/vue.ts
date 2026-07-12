@@ -18,7 +18,7 @@ export async function vueConfig(options: Options = {}): Promise<Config[]> {
   // Merge all rule-only configs into one scoped to vueFiles
   const mergedRules = ruleConfigs.reduce<Record<string, unknown>>(
     (acc, c) => ({ ...acc, ...(c as { rules?: Record<string, unknown> }).rules }),
-    {}
+    {},
   );
 
   // When TypeScript is enabled, inject @typescript-eslint/parser as the inner <script> parser

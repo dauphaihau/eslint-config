@@ -8,10 +8,10 @@ export {
   AllFilesStrategy,
   SourceFilesStrategy,
   ComponentFilesStrategy,
-  TailwindStrategy
+  TailwindStrategy,
 } from './file-type-strategy';
 
 export {
   StrategyManager,
-  strategyManager
+  strategyManager,
 } from './strategy-manager';

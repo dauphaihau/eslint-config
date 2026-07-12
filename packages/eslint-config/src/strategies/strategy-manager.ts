@@ -9,7 +9,7 @@ import {
   AllFilesStrategy,
   SourceFilesStrategy,
   ComponentFilesStrategy,
-  TailwindStrategy
+  TailwindStrategy,
 } from './file-type-strategy';
 
 /**
@@ -62,7 +62,7 @@ export class StrategyManager {
    */
   getActiveStrategies(options: Options): FileTypeStrategy[] {
     return Array.from(this.strategies.values()).filter(strategy =>
-      strategy.shouldApply(options)
+      strategy.shouldApply(options),
     );
   }
 
